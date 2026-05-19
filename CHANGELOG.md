@@ -1,5 +1,29 @@
 # Workshop Site Updates
 
+## Updated Prompt to Use Specific Agent Developer Name (2026-05-19)
+
+### Changed Initial Metadata Pull Prompt
+**Old prompt:**
+```
+Pull metadata for Order__c object and Pronto agent configuration
+```
+
+**New prompt:**
+```
+Pull metadata for Order__c object and Pronto_Service_Agent
+```
+
+### Why This Change Matters
+- ✅ Uses exact developer name for the Pronto agent
+- ✅ More specific = better results from Vibes
+- ✅ Helps Vibes identify correct agent configuration
+- ✅ Reduces ambiguity in metadata retrieval
+
+### Added TIP Callout
+- Explains Pronto_Service_Agent is the developer name
+- Notes users should substitute if their agent has different name
+- Clarifies why specific names help Vibes
+
 ## Added Agent Metadata Type Confirmation Step (2026-05-19)
 
 ### New Prompt Handling: "I don't know"
