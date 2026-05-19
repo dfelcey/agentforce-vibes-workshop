@@ -354,14 +354,73 @@
                     </div>
                 </div>
 
-                <h3>Pull Project Metadata</h3>
-                <p>Now that MCP is configured and the chat panel is open, you can ask Vibes to retrieve metadata from your org. This gives Vibes the context it needs about your Order__c object and Pronto agent configuration.</p>
+                <h3>Give Vibes a Complete Plan</h3>
+                <p>Instead of giving Vibes individual prompts for each step, you can provide a comprehensive plan that covers the entire workshop. This lets Vibes understand the full context and execute all steps efficiently.</p>
 
-                <p><strong>In the Agentforce chat input box at the bottom of the chat panel</strong>, type this prompt:</p>
+                <p><strong>In the Agentforce chat input box at the bottom of the chat panel</strong>, copy and paste this complete plan:</p>
 
                 <div class="code-example">
                     <div class="code-header">
-                        <span class="code-label">Prompt</span>
+                        <span class="code-label">Complete Workshop Plan</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <pre><code>I need to extend my Pronto agent with custom Apex actions and a new Loyalty subagent. Please create a plan for:
+
+1. Pull metadata from my org:
+   - Order__c custom object (with Order_Number__c, Status__c, Estimated_Delivery_Date__c fields)
+   - Pronto_Service_Agent configuration
+
+2. Create OrderStatusAction Apex class:
+   - Invocable from Agentforce (@InvocableMethod)
+   - Input: order number (String)
+   - Query Order__c using Order_Number__c field
+   - Return: order status (Status__c) and estimated delivery date (Estimated_Delivery_Date__c) as Strings
+   - Include error handling for orders not found
+   - Create test class with 100% coverage
+   - Label the invocable method as "Get Order Status"
+
+3. Deploy OrderStatusAction to my org
+
+4. Create LoyaltyPointsAction Apex class:
+   - Invocable from Agentforce (@InvocableMethod)
+   - Input: customer email (String)
+   - Return: random number of loyalty points between 100 and 10000 (Integer)
+   - Label the invocable method as "Get Loyalty Points"
+   - Create test class with 100% coverage
+
+5. Deploy LoyaltyPointsAction to my org
+
+After deployment, I'll manually:
+- Create a Loyalty subagent in Agent Builder
+- Add the Get Loyalty Points action to the Loyalty subagent
+- Test both actions
+
+Please create a plan first, then I'll review it before you proceed.</code></pre>
+                </div>
+
+                <div class="callout callout-success">
+                    <div class="callout-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                        </svg>
+                    </div>
+                    <div class="callout-content">
+                        <strong>Why Use a Complete Plan?</strong>
+                        <ul style="margin-top: 0.5rem; margin-bottom: 0;">
+                            <li><strong>Better Context:</strong> Vibes understands the full scope and can make better architectural decisions</li>
+                            <li><strong>Fewer Prompts:</strong> One comprehensive prompt instead of multiple back-and-forth exchanges</li>
+                            <li><strong>Consistent Code:</strong> Vibes sees both Apex classes together and can ensure consistency</li>
+                            <li><strong>You Stay in Control:</strong> Vibes creates a plan first, you review and approve before execution</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Alternative: Step-by-Step Approach</h3>
+                <p>If you prefer to work step-by-step (useful for learning), you can break this into individual prompts. Start with pulling metadata:</p>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">Step 1: Pull Metadata Only</span>
                         <button class="copy-btn">Copy</button>
                     </div>
                     <pre><code>Pull metadata for Order__c object and Pronto_Service_Agent</code></pre>
@@ -626,6 +685,17 @@ Which do you prefer?</code></pre>
                 <div class="step-header">
                     <span class="step-number">3</span>
                     <h2>Generate the Apex Action</h2>
+                </div>
+
+                <div class="callout callout-info">
+                    <div class="callout-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="callout-content">
+                        <strong>💡 Quick Path:</strong> If you used the <strong>Complete Workshop Plan</strong> in Step 2, Vibes has already created a plan for both Apex classes. Skip to reviewing and approving the plan! The prompts below are for the step-by-step approach.
+                    </div>
                 </div>
 
                 <h3>Use Natural Language to Build</h3>
