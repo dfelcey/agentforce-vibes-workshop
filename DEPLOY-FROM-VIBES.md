@@ -201,7 +201,7 @@ Create a README for your code repository:
 cat > README.md << 'EOF'
 # Pronto Agent Extension - Order Status Action
 
-Custom Apex action built with Agentforce Vibes to extend the Pronto Customer Service agent with order lookup capabilities.
+Custom Apex action built with Agentforce Vibes to extend the Pronto agent with order lookup capabilities.
 
 ## Features
 
@@ -224,9 +224,9 @@ sf project deploy start --target-org production-alias --test-level RunLocalTests
 
 ## Agent Configuration
 
-Add to Pronto Customer Service subagent in Agentforce Builder:
-1. Setup → Agentforce Agents → Pronto Customer Service Agent
-2. New Action → Apex → OrderStatusAction
+Add to Pronto agent in Agentforce Builder:
+1. Setup → Agentforce Agents → Pronto Agent
+2. Actions → New Action → Apex → OrderStatusAction
 3. Configure as "Get Order Status"
 
 ## Built With

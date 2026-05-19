@@ -103,11 +103,11 @@
                     <li>How to launch and configure Agentforce Vibes within your Salesforce org</li>
                     <li>How to use natural language to generate production-ready Apex code</li>
                     <li>How to deploy and test Apex actions for Agentforce agents</li>
-                    <li>How to integrate custom actions into Pronto subagents</li>
+                    <li>How to integrate custom actions into your Pronto agent</li>
                 </ul>
 
                 <h3>What You'll Build</h3>
-                <p>A complete <code>Get Order Status</code> Apex action that allows the Pronto Customer Service subagent to look up order information and delivery dates for customers.</p>
+                <p>A complete <code>Get Order Status</code> Apex action that allows the Pronto agent to look up order information and delivery dates for customers.</p>
 
                 <div class="info-grid">
                     <div class="info-card">
@@ -133,7 +133,7 @@
 
                 <ul>
                     <li><strong>Salesforce Org Access</strong> — A Salesforce org with Agentforce enabled</li>
-                    <li><strong>Pronto Agent</strong> — A configured Pronto agent with the Customer Service subagent (complete the core Agentforce Builder Workshop first)</li>
+                    <li><strong>Pronto Agent</strong> — A configured Pronto agent (complete the core Agentforce Builder Workshop first)</li>
                     <li><strong>Order Object</strong> — The <code>Order__c</code> custom object with fields: <code>Order_Number__c</code>, <code>Status__c</code>, and <code>Estimated_Delivery_Date__c</code></li>
                     <li><strong>System Permissions</strong> — Ability to create and deploy Apex classes and modify Agentforce agents</li>
                 </ul>
@@ -222,13 +222,13 @@
                         <span class="code-label">Prompt</span>
                         <button class="copy-btn">Copy</button>
                     </div>
-                    <pre><code>Pull metadata for Order__c object, Pronto agent configuration, and Customer Service subagent</code></pre>
+                    <pre><code>Pull metadata for Order__c object and Pronto agent configuration</code></pre>
                 </div>
 
                 <p>Vibes will retrieve:</p>
                 <ul>
                     <li>The <code>Order__c</code> custom object definition and fields</li>
-                    <li>Your Pronto agent and subagent configurations</li>
+                    <li>Your Pronto agent configuration</li>
                     <li>Related permission sets and profiles</li>
                     <li>Existing Apex classes and Lightning Web Components</li>
                 </ul>
@@ -367,8 +367,9 @@ Update the method description to be more specific</code></pre>
                 <ol class="step-list">
                     <li>In a new browser tab, navigate to <strong>Setup</strong> in your Salesforce org</li>
                     <li>Search for <strong>Agentforce Agents</strong> in Quick Find</li>
-                    <li>Open your <strong>Pronto Customer Service Agent</strong></li>
-                    <li>In the agent canvas, click <strong>New Action</strong></li>
+                    <li>Open your <strong>Pronto Agent</strong></li>
+                    <li>Click the <strong>Actions</strong> tab or section</li>
+                    <li>Click <strong>New Action</strong></li>
                     <li>Select <strong>Apex</strong> as the action type</li>
                     <li>Search for and select <strong>OrderStatusAction</strong></li>
                     <li>Set the action Label to <strong>Get Order Status</strong></li>
@@ -381,23 +382,21 @@ Update the method description to be more specific</code></pre>
                     <li>Click <strong>Save</strong></li>
                 </ol>
 
-                <h3>Add Action to Customer Service Subagent</h3>
+                <h3>Update Agent Instructions</h3>
                 <ol class="step-list">
-                    <li>In Agent Builder, navigate to the <strong>Customer Service subagent</strong></li>
-                    <li>Click the <strong>Actions</strong> tab</li>
-                    <li>Click <strong>Add Action</strong> and select <strong>Get Order Status</strong></li>
-                    <li>In the <strong>Instructions</strong> field, add guidance for when to use this action:</li>
+                    <li>In Agent Builder, locate the <strong>Instructions</strong> section for your Pronto agent</li>
+                    <li>Add guidance for when to use this action:</li>
                 </ol>
 
                 <div class="code-example">
                     <div class="code-header">
-                        <span class="code-label">Subagent Instructions</span>
+                        <span class="code-label">Agent Instructions</span>
                         <button class="copy-btn">Copy</button>
                     </div>
                     <pre><code>When a customer asks about their order status or delivery date, use the Get Order Status action with the order number they provide. If they don't provide an order number, ask for it first.</code></pre>
                 </div>
 
-                <ol class="step-list" start="5">
+                <ol class="step-list" start="3">
                     <li>Click <strong>Save</strong></li>
                 </ol>
             </section>
@@ -429,7 +428,7 @@ Update the method description to be more specific</code></pre>
                 <p>Check that your action worked correctly:</p>
 
                 <ol class="step-list">
-                    <li>The agent should route your query to the Customer Service subagent</li>
+                    <li>The Pronto agent should recognize the order status query</li>
                     <li>You should see an indication that the <strong>Get Order Status</strong> action was called</li>
                     <li>Click <strong>Interaction Details</strong> to see the full execution trace</li>
                     <li>Verify the response includes:
@@ -460,7 +459,7 @@ Update the method description to be more specific</code></pre>
                 <h3>Troubleshooting</h3>
                 <p>If the action doesn't work as expected:</p>
                 <ul>
-                    <li><strong>Action not called:</strong> Check the subagent instructions and ensure they clearly describe when to use the action</li>
+                    <li><strong>Action not called:</strong> Check the agent instructions and ensure they clearly describe when to use the action</li>
                     <li><strong>Error response:</strong> Review the Interaction Details for error messages and verify the Order__c object has test data</li>
                     <li><strong>Missing data:</strong> Ensure your test order record has all required fields populated</li>
                 </ul>

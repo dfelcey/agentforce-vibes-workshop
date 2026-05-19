@@ -10,7 +10,7 @@ This hands-on workshop teaches developers how to:
 - Launch and configure Agentforce Vibes inside their Salesforce org
 - Use natural language to generate production-ready Apex code
 - Deploy custom actions directly to Salesforce
-- Integrate Apex actions into Pronto subagents
+- Integrate Apex actions into your Pronto agent
 - Test and validate agent behavior
 
 **Duration**: ~30 minutes  

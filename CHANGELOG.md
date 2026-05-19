@@ -1,5 +1,26 @@
 # Workshop Site Updates
 
+## Content Corrections (2026-05-19)
+
+### Fixed Pronto Agent Structure
+- ✅ Removed incorrect references to "Customer Service subagent"
+- ✅ Updated instructions to add actions directly to Pronto agent (matching standard Agentforce Builder Workshop)
+- ✅ Changed "Pronto Customer Service Agent" to "Pronto Agent" throughout
+- ✅ Updated agent configuration steps to reflect correct workflow
+- ✅ Modified testing section to reference Pronto agent directly
+
+### Files Updated
+- `index.html` - 8 references corrected across Overview, Prerequisites, Step 3, Step 5, and Step 6
+- `DEPLOY-FROM-VIBES.md` - 2 references corrected in README section
+
+### Changes Summary
+- Prerequisites now require "A configured Pronto agent" (not "with Customer Service subagent")
+- Step 3 prompts for "Pronto agent configuration" (not "Customer Service subagent")
+- Step 5 adds actions to "Pronto Agent" directly via Actions tab
+- Step 6 testing validates "Pronto agent" recognition (not routing to subagent)
+
+# Workshop Site Updates
+
 ## Visual Improvements
 
 ### Images & Screenshots
