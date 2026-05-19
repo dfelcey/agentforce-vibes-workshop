@@ -1,5 +1,39 @@
 # Workshop Site Updates
 
+## Added Retrieval Option Guidance (2026-05-19)
+
+### Step 2: Choose Retrieval Option
+- ✅ Added section explaining Vibes retrieval options (A vs B)
+- ✅ Shows exact Vibes prompt users will see
+- ✅ Clear guidance to choose Option A (no-manifest)
+- ✅ Explains WHY: faster, simpler, Vibes auto-determines components
+- ✅ Explains Option B complexity: requires exact metadata type names
+
+### Why This Matters
+Users were getting confused when Vibes asked to choose between
+options A and B. Now they know:
+- What the prompt means
+- Which option to choose (A)
+- Why Option A is better for workshops
+- When Option B might be used (advanced scenarios)
+
+## Added Visual UI Diagram (2026-05-19)
+
+### Step 2: Visual Guide with Red Highlights
+- ✅ Interactive UI mockup of Agentforce Vibes interface
+- ✅ Animated red pulsing highlight boxes on key areas
+- ✅ Labeled callouts with arrows showing:
+  1. Chat icon (💬) in Activity Bar
+  2. Chat input box location
+- ✅ Professional VS Code-style mockup
+- ✅ Pure CSS implementation (no images needed)
+
+### CSS Added
+- UI diagram styles (.ui-diagram, .ui-mockup, .ui-highlight)
+- Animated pulse effect for red boxes
+- Label callouts with directional arrows
+- Responsive chat panel and sidebar mockup
+
 ## Enhanced Loyalty Subagent Configuration (2026-05-19)
 
 ### Improved Subagent Description

@@ -289,7 +289,42 @@
 
                 <p>Press <strong>Enter</strong> or click the <strong>Send</strong> button to submit the prompt.</p>
 
-                <p>Vibes will retrieve:</p>
+                <h3>Choose Retrieval Option</h3>
+                <p>Vibes will ask you to choose how to retrieve the metadata. You'll see a message like:</p>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">Vibes Response</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <pre><code>Choose retrieval option: run retrieve_metadata now using username &lt;your-org&gt; with no manifest (tool will auto-determine components), or should I create and use an explicit package.xml that includes Order__c and an identified Pronto agent metadata type?
+
+Reply "A" for no-manifest or "B" to provide/confirm metadata type for the agent.</code></pre>
+                </div>
+
+                <p><strong>Choose Option A</strong> by typing:</p>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">Your Response</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <pre><code>A</code></pre>
+                </div>
+
+                <div class="callout callout-info">
+                    <div class="callout-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="callout-content">
+                        <strong>Why Option A?</strong> The no-manifest option lets Vibes intelligently determine which metadata components to retrieve based on your prompt. This is faster and simpler for workshop purposes. Option B requires you to specify exact metadata type names (like <code>AiApplicationConfig</code>), which can be complex for first-time users.
+                    </div>
+                </div>
+
+                <h3>Wait for Retrieval</h3>
+                <p>Vibes will now retrieve:</p>
                 <ul>
                     <li>The <code>Order__c</code> custom object definition and fields</li>
                     <li>Your Pronto agent configuration</li>
