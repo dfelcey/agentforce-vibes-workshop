@@ -13,9 +13,14 @@ This hands-on workshop teaches developers how to:
 - Integrate Apex actions into your Pronto agent
 - Test and validate agent behavior
 
-**Duration**: ~30 minutes  
+**Duration**: ~45 minutes  
 **Level**: Intermediate  
 **Prerequisites**: Salesforce org with Agentforce and Pronto agent configured
+
+**What You'll Build**:
+- Order Status Action (Apex invocable method)
+- Loyalty Subagent with custom instructions
+- Loyalty Points Action integrated into the subagent
 
 ## 🚀 Deploying to GitHub Pages
 

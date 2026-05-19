@@ -63,10 +63,11 @@
                     </ul>
                 </div>
                 <div class="nav-group">
-                    <div class="nav-group-title">Configure & Test</div>
+                    <div class="nav-group-title">Build Loyalty Subagent</div>
                     <ul class="nav-list">
-                        <li><a href="#step5" class="nav-item">5. Configure Agent Action</a></li>
-                        <li><a href="#step6" class="nav-item">6. Test Your Action</a></li>
+                        <li><a href="#step5" class="nav-item">5. Create Loyalty Subagent</a></li>
+                        <li><a href="#step6" class="nav-item">6. Add Loyalty Points Action</a></li>
+                        <li><a href="#step7" class="nav-item">7. Test the Subagent</a></li>
                     </ul>
                 </div>
                 <div class="nav-group">
@@ -103,18 +104,23 @@
                     <li>How to launch and configure Agentforce Vibes within your Salesforce org</li>
                     <li>How to use natural language to generate production-ready Apex code</li>
                     <li>How to deploy and test Apex actions for Agentforce agents</li>
-                    <li>How to integrate custom actions into your Pronto agent</li>
+                    <li>How to create and configure subagents within your Pronto agent</li>
+                    <li>How to integrate custom actions into subagents</li>
                 </ul>
 
                 <h3>What You'll Build</h3>
-                <p>A complete <code>Get Order Status</code> Apex action that allows the Pronto agent to look up order information and delivery dates for customers.</p>
+                <p>Two complete features for your Pronto agent:</p>
+                <ul>
+                    <li><strong>Order Status Action</strong> — Look up order information and delivery dates</li>
+                    <li><strong>Loyalty Subagent</strong> — A dedicated subagent with a custom action to retrieve customer loyalty points</li>
+                </ul>
 
                 <div class="info-grid">
                     <div class="info-card">
                         <div class="info-card-icon">⏱️</div>
                         <div class="info-card-content">
                             <h4>Duration</h4>
-                            <p>~30 minutes</p>
+                            <p>~45 minutes</p>
                         </div>
                     </div>
                     <div class="info-card">
@@ -358,86 +364,58 @@ Update the method description to be more specific</code></pre>
             <section id="step5" class="content-section">
                 <div class="step-header">
                     <span class="step-number">5</span>
-                    <h2>Configure the Agent Action</h2>
+                    <h2>Create a Loyalty Subagent</h2>
                 </div>
 
-                <h3>Add Action in Agentforce Builder</h3>
-                <p>Now that your Apex class is deployed, you'll wire it into your Pronto agent using Agent Builder.</p>
+                <h3>What are Subagents?</h3>
+                <p>Subagents are specialized agents within your main Pronto agent that handle specific domains or tasks. They have their own instructions, actions, and knowledge, allowing you to organize complex agent behaviors into focused, manageable components.</p>
 
+                <div class="callout callout-info">
+                    <div class="callout-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="callout-content">
+                        <strong>TIP:</strong> In the Agentforce Builder Workshop, you may have already created other subagents. Subagents help organize your agent's capabilities by topic area (e.g., Orders, Loyalty, Support).
+                    </div>
+                </div>
+
+                <h3>Create the Loyalty Subagent</h3>
                 <ol class="step-list">
-                    <li>In a new browser tab, navigate to <strong>Setup</strong> in your Salesforce org</li>
+                    <li>Navigate to <strong>Setup</strong> in your Salesforce org</li>
                     <li>Search for <strong>Agentforce Agents</strong> in Quick Find</li>
                     <li>Open your <strong>Pronto Agent</strong></li>
-                    <li>Click the <strong>Actions</strong> tab or section</li>
-                    <li>Click <strong>New Action</strong></li>
-                    <li>Select <strong>Apex</strong> as the action type</li>
-                    <li>Search for and select <strong>OrderStatusAction</strong></li>
-                    <li>Set the action Label to <strong>Get Order Status</strong></li>
-                    <li>Review the auto-populated Input/Output fields:
+                    <li>In the agent canvas, look for the <strong>Subagents</strong> or <strong>Topics</strong> section</li>
+                    <li>Click <strong>New Subagent</strong> or <strong>Add Topic</strong></li>
+                    <li>Configure the subagent:
                         <ul>
-                            <li><strong>Input:</strong> Order Number (String)</li>
-                            <li><strong>Outputs:</strong> Status (String), Estimated Delivery Date (String)</li>
+                            <li><strong>Name:</strong> Loyalty</li>
+                            <li><strong>API Name:</strong> Loyalty</li>
+                            <li><strong>Description:</strong> Handles customer loyalty program inquiries</li>
                         </ul>
                     </li>
-                    <li>Click <strong>Save</strong></li>
                 </ol>
 
-                <h3>Update Agent Instructions</h3>
-                <ol class="step-list">
-                    <li>In Agent Builder, locate the <strong>Instructions</strong> section for your Pronto agent</li>
-                    <li>Add guidance for when to use this action:</li>
-                </ol>
+                <h3>Add Subagent Instructions</h3>
+                <p>Define when the Loyalty subagent should be activated and how it should behave:</p>
 
                 <div class="code-example">
                     <div class="code-header">
-                        <span class="code-label">Agent Instructions</span>
+                        <span class="code-label">Subagent Instructions</span>
                         <button class="copy-btn">Copy</button>
                     </div>
-                    <pre><code>When a customer asks about their order status or delivery date, use the Get Order Status action with the order number they provide. If they don't provide an order number, ask for it first.</code></pre>
+                    <pre><code>You are a loyalty program specialist for customers. When customers ask about loyalty points, rewards, or membership benefits, help them by:
+- Retrieving their current loyalty points balance
+- Explaining the rewards program
+- Answering questions about how to earn points
+
+Always be friendly and enthusiastic about helping customers maximize their rewards.</code></pre>
                 </div>
 
-                <ol class="step-list" start="3">
+                <ol class="step-list">
+                    <li>Paste the instructions into the <strong>Instructions</strong> field</li>
                     <li>Click <strong>Save</strong></li>
-                </ol>
-            </section>
-
-            <section id="step6" class="content-section">
-                <div class="step-header">
-                    <span class="step-number">6</span>
-                    <h2>Test Your Action</h2>
-                </div>
-
-                <h3>Preview in Agent Builder</h3>
-                <p>Test your new action using Agent Builder's preview feature.</p>
-
-                <ol class="step-list">
-                    <li>In Agent Builder, click the <strong>Preview</strong> button in the top right</li>
-                    <li>Wait for the preview chat interface to load</li>
-                    <li>In the chat input, type a test query:</li>
-                </ol>
-
-                <div class="code-example">
-                    <div class="code-header">
-                        <span class="code-label">Test Query</span>
-                        <button class="copy-btn">Copy</button>
-                    </div>
-                    <pre><code>What's the status of order ORD-12345?</code></pre>
-                </div>
-
-                <h3>Verify the Response</h3>
-                <p>Check that your action worked correctly:</p>
-
-                <ol class="step-list">
-                    <li>The Pronto agent should recognize the order status query</li>
-                    <li>You should see an indication that the <strong>Get Order Status</strong> action was called</li>
-                    <li>Click <strong>Interaction Details</strong> to see the full execution trace</li>
-                    <li>Verify the response includes:
-                        <ul>
-                            <li>Order number (ORD-12345)</li>
-                            <li>Current status (e.g., "Shipped", "Processing")</li>
-                            <li>Estimated delivery date</li>
-                        </ul>
-                    </li>
                 </ol>
 
                 <div class="callout callout-info">
@@ -447,21 +425,170 @@ Update the method description to be more specific</code></pre>
                         </svg>
                     </div>
                     <div class="callout-content">
-                        <strong>TIP:</strong> Try different scenarios to ensure your action handles edge cases:
+                        <strong>TIP:</strong> The Pronto agent will automatically route customer queries about loyalty points to this subagent based on the instructions you provide.
+                    </div>
+                </div>
+            </section>
+
+            <section id="step6" class="content-section">
+                <div class="step-header">
+                    <span class="step-number">6</span>
+                    <h2>Add Loyalty Points Action</h2>
+                </div>
+
+                <h3>Generate the Loyalty Points Action</h3>
+                <p>Now you'll use Vibes again to create a custom action for retrieving loyalty points. This will demonstrate how quickly you can extend your agent with new capabilities.</p>
+
+                <p>Return to <strong>Agentforce Vibes</strong> and enter this prompt:</p>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">Prompt</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <pre><code>Create an Apex class called LoyaltyPointsAction that is invocable from Agentforce. It should accept a customer email as a string input and return a random number of loyalty points between 100 and 10000 as an integer output. Label the invocable method as "Get Loyalty Points". Include a test class with 100% coverage.</code></pre>
+                </div>
+
+                <div class="callout callout-info">
+                    <div class="callout-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="callout-content">
+                        <strong>TIP:</strong> In a real-world scenario, you'd query a Loyalty__c custom object or external system. For this workshop, a random number simulates the loyalty points lookup without requiring additional org setup.
+                    </div>
+                </div>
+
+                <h3>Deploy the Loyalty Action</h3>
+                <p>Once Vibes generates the code, deploy it:</p>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">Prompt</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <pre><code>Deploy the LoyaltyPointsAction class and test class to my org</code></pre>
+                </div>
+
+                <p>Wait for Vibes to confirm successful deployment.</p>
+
+                <h3>Add Action to Loyalty Subagent</h3>
+                <p>Now wire the action into your Loyalty subagent:</p>
+
+                <ol class="step-list">
+                    <li>Return to <strong>Agent Builder</strong> in your Salesforce org</li>
+                    <li>Open your <strong>Pronto Agent</strong></li>
+                    <li>Navigate to the <strong>Loyalty subagent</strong> you just created</li>
+                    <li>In the subagent view, click the <strong>Actions</strong> tab</li>
+                    <li>Click <strong>New Action</strong></li>
+                    <li>Select <strong>Apex</strong> as the action type</li>
+                    <li>Search for and select <strong>LoyaltyPointsAction</strong></li>
+                    <li>Verify the action label is <strong>Get Loyalty Points</strong></li>
+                    <li>Review the Input/Output fields:
                         <ul>
-                            <li>Query with a non-existent order number</li>
-                            <li>Ask about order status without providing a number</li>
-                            <li>Try variations like "check my order" or "delivery status"</li>
+                            <li><strong>Input:</strong> Customer Email (String)</li>
+                            <li><strong>Output:</strong> Points (Integer)</li>
+                        </ul>
+                    </li>
+                    <li>Click <strong>Save</strong></li>
+                </ol>
+
+                <div class="callout callout-info">
+                    <div class="callout-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="callout-content">
+                        <strong>TIP:</strong> Because this action is added to the Loyalty subagent (not the main Pronto agent), it will only be available when the Loyalty subagent is activated.
+                    </div>
+                </div>
+            </section>
+
+            <section id="step7" class="content-section">
+                <div class="step-header">
+                    <span class="step-number">7</span>
+                    <h2>Test the Loyalty Subagent</h2>
+                </div>
+
+                <h3>Preview in Agent Builder</h3>
+                <p>Test your new Loyalty subagent and its action using Agent Builder's preview feature.</p>
+
+                <ol class="step-list">
+                    <li>In Agent Builder, ensure you're viewing your <strong>Pronto Agent</strong></li>
+                    <li>Click the <strong>Preview</strong> button in the top right</li>
+                    <li>Wait for the preview chat interface to load</li>
+                    <li>In the chat input, type a test query:</li>
+                </ol>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">Test Query</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <pre><code>How many loyalty points do I have? My email is customer@example.com</code></pre>
+                </div>
+
+                <h3>Verify the Response</h3>
+                <p>Check that your Loyalty subagent is working correctly:</p>
+
+                <ol class="step-list">
+                    <li>The Pronto agent should route your query to the <strong>Loyalty subagent</strong></li>
+                    <li>You should see an indication that the <strong>Get Loyalty Points</strong> action was called</li>
+                    <li>Click <strong>Interaction Details</strong> or <strong>View Trace</strong> to see the full execution flow</li>
+                    <li>Verify the response includes:
+                        <ul>
+                            <li>Recognition that this is a loyalty points query</li>
+                            <li>A number between 100 and 10,000 (your loyalty points)</li>
+                            <li>A friendly message from the Loyalty subagent</li>
+                        </ul>
+                    </li>
+                    <li>In the trace, confirm the query was routed to the <strong>Loyalty</strong> subagent (not the main agent)</li>
+                </ol>
+
+                <div class="callout callout-info">
+                    <div class="callout-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="callout-content">
+                        <strong>TIP:</strong> Try different test scenarios:
+                        <ul>
+                            <li>"What are my loyalty points?" (without providing email - should ask for it)</li>
+                            <li>"Check my rewards balance for john@example.com"</li>
+                            <li>"How does the loyalty program work?" (should get general info, not call the action)</li>
                         </ul>
                     </div>
                 </div>
 
-                <h3>Troubleshooting</h3>
-                <p>If the action doesn't work as expected:</p>
+                <h3>Test Multiple Capabilities</h3>
+                <p>Verify that your Pronto agent can handle different types of queries:</p>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">Additional Test Queries</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <pre><code>1. What's the status of order ORD-12345?
+2. How many loyalty points does sarah@example.com have?
+3. When will my order arrive?</code></pre>
+                </div>
+
+                <p>The agent should correctly route:</p>
                 <ul>
-                    <li><strong>Action not called:</strong> Check the agent instructions and ensure they clearly describe when to use the action</li>
-                    <li><strong>Error response:</strong> Review the Interaction Details for error messages and verify the Order__c object has test data</li>
-                    <li><strong>Missing data:</strong> Ensure your test order record has all required fields populated</li>
+                    <li><strong>Order queries</strong> → Main agent (using OrderStatusAction from earlier steps)</li>
+                    <li><strong>Loyalty queries</strong> → Loyalty subagent (using LoyaltyPointsAction)</li>
+                </ul>
+
+                <h3>Troubleshooting</h3>
+                <p>If the Loyalty subagent doesn't work as expected:</p>
+                <ul>
+                    <li><strong>Action not called:</strong> Check the Loyalty subagent instructions and ensure they clearly describe when to use the Get Loyalty Points action</li>
+                    <li><strong>Not routing to subagent:</strong> Review the subagent instructions and make sure keywords like "loyalty" and "points" are mentioned</li>
+                    <li><strong>Error response:</strong> Review the Interaction Details for error messages. Check that LoyaltyPointsAction deployed successfully</li>
+                    <li><strong>Wrong subagent activated:</strong> Refine the subagent instructions to be more specific about when it should activate</li>
                 </ul>
             </section>
 
@@ -481,10 +608,11 @@ Update the method description to be more specific</code></pre>
                         <ul>
                             <li>✓ Launched and configured Agentforce Vibes in your Salesforce org</li>
                             <li>✓ Retrieved project metadata to provide context to Vibes</li>
-                            <li>✓ Generated production-ready Apex code using natural language</li>
-                            <li>✓ Deployed and tested your code directly to your org</li>
-                            <li>✓ Integrated a custom action into your Pronto agent</li>
-                            <li>✓ Verified agent behavior in preview mode</li>
+                            <li>✓ Generated two production-ready Apex actions using natural language</li>
+                            <li>✓ Deployed OrderStatusAction and LoyaltyPointsAction to your org</li>
+                            <li>✓ Created a Loyalty subagent with custom instructions</li>
+                            <li>✓ Integrated the Get Loyalty Points action into your subagent</li>
+                            <li>✓ Verified agent routing and action execution in preview mode</li>
                         </ul>
                     </div>
                 </div>
@@ -516,22 +644,24 @@ Update the method description to be more specific</code></pre>
                 </div>
 
                 <h3>Extend Your Learning</h3>
-                <p>Try these additional challenges to deepen your Vibes expertise:</p>
+                <p>Try these additional challenges to deepen your Vibes and subagent expertise:</p>
 
                 <ol>
-                    <li><strong>Add Error Handling</strong> — Ask Vibes to update the action to return a friendly error message when an order isn't found</li>
-                    <li><strong>Enhance with More Fields</strong> — Add customer email and tracking number to the response</li>
-                    <li><strong>Create Related Actions</strong> — Build a "Cancel Order" or "Update Delivery Address" action</li>
-                    <li><strong>Build Lightning Components</strong> — Use Vibes to create a dashboard showing all orders</li>
+                    <li><strong>Connect to Real Data</strong> — Create a Loyalty__c custom object and update LoyaltyPointsAction to query real records instead of random numbers</li>
+                    <li><strong>Add More Subagents</strong> — Create a "Support" subagent that handles returns and refunds</li>
+                    <li><strong>Enhance the Loyalty Action</strong> — Add the ability to redeem points or check reward tier status</li>
+                    <li><strong>Build Cross-Subagent Flows</strong> — Enable the Loyalty subagent to award bonus points when orders are placed</li>
+                    <li><strong>Add Knowledge Articles</strong> — Attach knowledge base articles to your subagents for FAQ responses</li>
                 </ol>
 
-                <h3>Continue Building</h3>
-                <p>Explore more with Agentforce Vibes:</p>
+                <h3>Continue Building with Vibes</h3>
+                <p>Explore more advanced capabilities:</p>
                 <ul>
-                    <li><strong>Complex Queries</strong> — Try generating Apex that joins multiple objects</li>
-                    <li><strong>Batch Processing</strong> — Ask Vibes to create batch Apex for bulk operations</li>
-                    <li><strong>Integration</strong> — Build callouts to external systems</li>
-                    <li><strong>Custom UI</strong> — Generate Lightning Web Components for custom agent interfaces</li>
+                    <li><strong>Complex Actions</strong> — Generate Apex that queries multiple related objects (Orders, Contacts, Accounts)</li>
+                    <li><strong>External Integration</strong> — Build callouts to external loyalty systems or shipping APIs</li>
+                    <li><strong>Batch Processing</strong> — Create scheduled jobs to update loyalty points nightly</li>
+                    <li><strong>Custom UI</strong> — Generate Lightning Web Components for a loyalty dashboard</li>
+                    <li><strong>Multi-Action Workflows</strong> — Chain multiple actions together in a single conversation</li>
                 </ul>
             </section>
 

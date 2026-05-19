@@ -1,5 +1,32 @@
 # Workshop Site Updates
 
+## Major Content Redesign (2026-05-19)
+
+### Redesigned Steps 5-7 to Build Loyalty Subagent
+- ✅ **NEW Step 5:** Create a Loyalty Subagent with custom instructions
+- ✅ **NEW Step 6:** Generate and deploy LoyaltyPointsAction using Vibes
+- ✅ **NEW Step 7:** Test the Loyalty subagent and verify routing
+- ✅ Removed outdated content about "Pronto Customer Service Agent" that doesn't exist
+- ✅ Workshop now teaches subagent creation, not just adding actions to main agent
+- ✅ Added comprehensive testing for multi-subagent routing
+
+### Workshop Now Builds Two Features
+1. **Order Status Action** (Steps 3-4) - Query Order__c records
+2. **Loyalty Subagent** (Steps 5-7) - Dedicated subagent with LoyaltyPointsAction
+
+### Updated Content
+- Overview section updated to describe both features
+- Navigation updated with new step titles
+- Duration increased from ~30 to ~45 minutes
+- Success section updated to reflect new accomplishments
+- Next Steps section enhanced with subagent-specific challenges
+- Prerequisites simplified (no reference to non-existent subagent)
+
+### Files Updated
+- `index.html` - Major restructuring of Steps 5-7, navigation, overview, success section
+- `README.md` - Updated duration and added "What You'll Build" section
+- `CHANGELOG.md` - This entry
+
 ## Content Corrections (2026-05-19)
 
 ### Fixed Pronto Agent Structure
