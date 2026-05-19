@@ -268,7 +268,7 @@
                 </div>
 
                 <h3>Use Natural Language to Build</h3>
-                <p>Now comes the powerful part — you'll use natural language to generate a production-ready Apex action. Vibes will understand your requirements and create complete, tested code.</p>
+                <p>Now comes the powerful part — you'll use natural language to generate a production-ready Apex action. Vibes will create a plan, let you review it, then build the complete, tested code.</p>
 
                 <p>In the Agentforce Vibes chat, enter this prompt:</p>
 
@@ -277,7 +277,47 @@
                         <span class="code-label">Prompt</span>
                         <button class="copy-btn">Copy</button>
                     </div>
-                    <pre><code>Create an Apex class called OrderStatusAction that is invocable from Agentforce. It should accept an order number as a string input, query the Order__c object for a matching record, and return the order status and estimated delivery date as output strings. Include proper error handling and a test class with 100% coverage.</code></pre>
+                    <pre><code>I need to create an Apex action for Agentforce. Please create a plan for:
+
+An Apex class called OrderStatusAction that is invocable from Agentforce. It should:
+- Accept an order number as a string input
+- Query the Order__c object for a matching record using the Order_Number__c field
+- Return the order status (Status__c) and estimated delivery date (Estimated_Delivery_Date__c) as output strings
+- Include proper error handling for when no order is found
+- Include a test class with 100% coverage
+
+Please create a plan first, then I'll review it before you build.</code></pre>
+                </div>
+
+                <div class="callout callout-info">
+                    <div class="callout-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="callout-content">
+                        <strong>TIP:</strong> Vibes works best when you ask it to plan first. This lets you review the approach before code is generated, ensuring it matches your requirements and org's patterns.
+                    </div>
+                </div>
+
+                <h3>Review and Approve the Plan</h3>
+                <p>Vibes will present a plan showing:</p>
+                <ul class="step-list">
+                    <li>The Apex class structure with <code>@InvocableMethod</code> annotation</li>
+                    <li>Input and output wrapper classes</li>
+                    <li>SOQL query approach</li>
+                    <li>Error handling strategy</li>
+                    <li>Test class outline</li>
+                </ul>
+
+                <p>Review the plan and respond:</p>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">Prompt</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <pre><code>Looks good, please proceed with building the code.</code></pre>
                 </div>
 
                 <h3>Review the Generated Code</h3>
@@ -437,7 +477,7 @@ Always be friendly and enthusiastic about helping customers maximize their rewar
                 </div>
 
                 <h3>Generate the Loyalty Points Action</h3>
-                <p>Now you'll use Vibes again to create a custom action for retrieving loyalty points. This will demonstrate how quickly you can extend your agent with new capabilities.</p>
+                <p>Now you'll use Vibes again to create a custom action for retrieving loyalty points. This demonstrates how quickly you can extend your agent with new capabilities using the same plan-first workflow.</p>
 
                 <p>Return to <strong>Agentforce Vibes</strong> and enter this prompt:</p>
 
@@ -446,7 +486,25 @@ Always be friendly and enthusiastic about helping customers maximize their rewar
                         <span class="code-label">Prompt</span>
                         <button class="copy-btn">Copy</button>
                     </div>
-                    <pre><code>Create an Apex class called LoyaltyPointsAction that is invocable from Agentforce. It should accept a customer email as a string input and return a random number of loyalty points between 100 and 10000 as an integer output. Label the invocable method as "Get Loyalty Points". Include a test class with 100% coverage.</code></pre>
+                    <pre><code>I need another Apex action for the Loyalty subagent. Please create a plan for:
+
+An Apex class called LoyaltyPointsAction that is invocable from Agentforce. It should:
+- Accept a customer email as a string input
+- Return a random number of loyalty points between 100 and 10000 as an integer output
+- Label the invocable method as "Get Loyalty Points"
+- Include a test class with 100% coverage
+
+Please create a plan first, then I'll approve it.</code></pre>
+                </div>
+
+                <p>Once Vibes presents the plan, review it and respond:</p>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">Prompt</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <pre><code>Looks good, build it.</code></pre>
                 </div>
 
                 <div class="callout callout-info">

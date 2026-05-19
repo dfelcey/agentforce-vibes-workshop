@@ -1,5 +1,26 @@
 # Workshop Site Updates
 
+## Improved Vibes Workflow (2026-05-19)
+
+### Added Plan-First Approach
+- ✅ Updated Step 3 prompts to ask Vibes to create a plan first
+- ✅ Added "Review and Approve the Plan" section in Step 3
+- ✅ Updated Step 6 prompts to follow same plan-first pattern
+- ✅ Added explanation of why planning first is a best practice
+- ✅ Included approval prompts ("Looks good, please proceed")
+
+### Why Plan-First?
+- Vibes creates better code when it plans the approach first
+- Allows you to review architecture before implementation
+- Ensures the solution matches your requirements
+- Follows Agentforce Vibes best practices
+
+### Prompts Now Include:
+- Clear requirement bullets (inputs, outputs, fields)
+- Explicit "Please create a plan first" instruction
+- Separate approval step before code generation
+- More structured and detailed requirements
+
 ## Major Content Redesign (2026-05-19)
 
 ### Redesigned Steps 5-7 to Build Loyalty Subagent
