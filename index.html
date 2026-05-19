@@ -348,17 +348,18 @@
    - Input: customer email (String)
    - Return: random number of loyalty points between 100 and 10000 (Integer)
    - Label the invocable method as "Get Loyalty Points"
+   - Include detailed description for Agent Builder
    - Create test class with 100% coverage
 
 3. Deploy LoyaltyPointsAction to my org with test execution
 
-After successful deployment, I'll manually:
-- Create a Loyalty subagent in Agent Builder with:
-  * Name: Loyalty
-  * Description: "Specializes in customer loyalty program inquiries, including points balance lookups, rewards information, and program benefits. Routes queries about loyalty points, rewards redemption, and membership tiers."
-  * Instructions: "You help customers with loyalty program questions. When a customer asks about their loyalty points balance, use the Get Loyalty Points action. Ask for their email address if they haven't provided it. Program details: Customers earn 1 point per dollar spent, 100 points = $1 off future orders. Be friendly and enthusiastic about helping customers with their rewards."
-- Add "Get Loyalty Points" action to the Loyalty subagent
-- Test the Loyalty subagent routing and action execution
+After deployment, I'll create the Loyalty subagent in Agent Builder manually (subagents can't be created via API yet) with these details:
+
+Subagent Configuration:
+- Name: Loyalty
+- Description: "Specializes in customer loyalty program inquiries, including points balance lookups, rewards information, and program benefits. Routes queries about loyalty points, rewards redemption, and membership tiers."
+- Instructions: "You help customers with loyalty program questions. When a customer asks about their loyalty points balance, use the Get Loyalty Points action. Ask for their email address if they haven't provided it. Program details: Customers earn 1 point per dollar spent, 100 points = $1 off future orders. Be friendly and enthusiastic about helping customers with their rewards."
+- Action: Get Loyalty Points (will be available after deployment)
 
 Please create a plan first, then I'll review it before you proceed.</code></pre>
                 </div>
