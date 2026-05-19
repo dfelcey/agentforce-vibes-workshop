@@ -56,11 +56,10 @@
                     </ul>
                 </div>
                 <div class="nav-group">
-                    <div class="nav-group-title">Build Loyalty Subagent</div>
+                    <div class="nav-group-title">Verify and Test</div>
                     <ul class="nav-list">
-                        <li><a href="#step3" class="nav-item">3. Create Loyalty Subagent</a></li>
-                        <li><a href="#step4" class="nav-item">4. Add Loyalty Points Action</a></li>
-                        <li><a href="#step5" class="nav-item">5. Test the Subagent</a></li>
+                        <li><a href="#step3" class="nav-item">3. Verify Loyalty Subagent</a></li>
+                        <li><a href="#step4" class="nav-item">4. Test the Subagent</a></li>
                     </ul>
                 </div>
                 <div class="nav-group">
@@ -341,7 +340,7 @@
                     <pre><code>I need to create a Loyalty subagent for my Pronto agent with a custom Apex action. Please create a plan for:
 
 1. Pull metadata from my org:
-   - Pronto_Service_Agent configuration
+   - Pronto_Service_Agent configuration (retrieve the complete agent definition)
 
 2. Create LoyaltyPointsAction Apex class:
    - Invocable from Agentforce (@InvocableMethod)
@@ -353,13 +352,14 @@
 
 3. Deploy LoyaltyPointsAction to my org with test execution
 
-After deployment, I'll create the Loyalty subagent in Agent Builder manually (subagents can't be created via API yet) with these details:
+4. Update Pronto_Service_Agent metadata to add Loyalty subagent:
+   - Modify the agent metadata file to include a new subagent section
+   - Subagent Name: Loyalty
+   - Subagent Description: "Specializes in customer loyalty program inquiries, including points balance lookups, rewards information, and program benefits. Routes queries about loyalty points, rewards redemption, and membership tiers."
+   - Subagent Instructions: "You help customers with loyalty program questions. When a customer asks about their loyalty points balance, use the Get Loyalty Points action. Ask for their email address if they haven't provided it. Program details: Customers earn 1 point per dollar spent, 100 points = $1 off future orders. Be friendly and enthusiastic about helping customers with their rewards."
+   - Reference the Get Loyalty Points action in the subagent configuration
 
-Subagent Configuration:
-- Name: Loyalty
-- Description: "Specializes in customer loyalty program inquiries, including points balance lookups, rewards information, and program benefits. Routes queries about loyalty points, rewards redemption, and membership tiers."
-- Instructions: "You help customers with loyalty program questions. When a customer asks about their loyalty points balance, use the Get Loyalty Points action. Ask for their email address if they haven't provided it. Program details: Customers earn 1 point per dollar spent, 100 points = $1 off future orders. Be friendly and enthusiastic about helping customers with their rewards."
-- Action: Get Loyalty Points (will be available after deployment)
+5. Deploy the updated Pronto_Service_Agent metadata back to my org
 
 Please create a plan first, then I'll review it before you proceed.</code></pre>
                 </div>
@@ -399,6 +399,8 @@ Please create a plan first, then I'll review it before you proceed.</code></pre>
                             <li>Pull Pronto agent metadata from your org</li>
                             <li>Generate the LoyaltyPointsAction Apex class and test</li>
                             <li>Deploy LoyaltyPointsAction to your org with test execution</li>
+                            <li>Update the Pronto agent metadata to include the Loyalty subagent</li>
+                            <li>Deploy the updated agent configuration back to your org</li>
                         </ul>
                     </li>
                 </ol>
@@ -425,10 +427,11 @@ Please create a plan first, then I'll review it before you proceed.</code></pre>
                         <ul style="margin-top: 0.5rem; margin-bottom: 0;">
                             <li>✓ Retrieved Pronto agent metadata from your org</li>
                             <li>✓ Generated LoyaltyPointsAction Apex class with test coverage</li>
-                            <li>✓ Deployed the Apex class to your Salesforce org</li>
-                            <li>✓ Verified successful deployment and test execution</li>
+                            <li>✓ Deployed the LoyaltyPointsAction to your Salesforce org</li>
+                            <li>✓ Added the Loyalty subagent to your Pronto agent metadata</li>
+                            <li>✓ Deployed the updated Pronto agent configuration with the new subagent</li>
                         </ul>
-                        <p style="margin-top: 0.75rem; margin-bottom: 0;">You're now ready to create the Loyalty subagent in Agent Builder!</p>
+                        <p style="margin-top: 0.75rem; margin-bottom: 0;">Your Loyalty subagent is now live and ready to test!</p>
                     </div>
                 </div>
             </section>
@@ -436,39 +439,44 @@ Please create a plan first, then I'll review it before you proceed.</code></pre>
             <section id="step3" class="content-section">
                 <div class="step-header">
                     <span class="step-number">3</span>
-                    <h2>Create a Loyalty Subagent</h2>
+                    <h2>Verify the Loyalty Subagent</h2>
                 </div>
 
-                <h3>What are Subagents?</h3>
-                <p>Subagents are specialized agents within your main Pronto agent that handle specific domains or tasks. They have their own instructions, actions, and knowledge, allowing you to organize complex agent behaviors into focused, manageable components.</p>
+                <h3>Check the Agent Configuration</h3>
+                <p>Let's verify that Vibes successfully created the Loyalty subagent within your Pronto agent.</p>
 
-                <div class="callout callout-info">
-                    <div class="callout-icon">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
-                        </svg>
-                    </div>
-                    <div class="callout-content">
-                        <strong>TIP:</strong> In the Agentforce Builder Workshop, you may have already created other subagents. Subagents help organize your agent's capabilities by topic area (e.g., Orders, Loyalty, Support).
-                    </div>
-                </div>
-
-                <h3>Create the Loyalty Subagent</h3>
                 <ol class="step-list">
                     <li>Navigate to <strong>Setup</strong> in your Salesforce org</li>
                     <li>Search for <strong>Agentforce Agents</strong> in Quick Find</li>
                     <li>Open your <strong>Pronto Agent</strong></li>
-                    <li>In the agent canvas, look for the <strong>Subagents</strong> or <strong>Topics</strong> section</li>
-                    <li>Click <strong>New Subagent</strong> or <strong>Add Topic</strong></li>
-                    <li>Configure the subagent:
+                    <li>You should see a new <strong>Loyalty</strong> subagent in the agent canvas or Topics section</li>
+                    <li>Click on the <strong>Loyalty subagent</strong> to view its configuration</li>
+                    <li>Verify the subagent details:
                         <ul>
                             <li><strong>Name:</strong> Loyalty</li>
-                            <li><strong>API Name:</strong> Loyalty</li>
-                            <li><strong>Description:</strong> Specializes in customer loyalty program inquiries, including points balance lookups, rewards information, and program benefits. Routes queries about loyalty points, rewards redemption, and membership tiers.</li>
+                            <li><strong>Description:</strong> Contains keywords about loyalty program inquiries</li>
+                            <li><strong>Instructions:</strong> Includes guidance about using the Get Loyalty Points action</li>
+                            <li><strong>Actions:</strong> Get Loyalty Points action is connected</li>
                         </ul>
                     </li>
-                    <li>Click <strong>Finish</strong> or <strong>Save</strong> to create the subagent</li>
                 </ol>
+
+                <div class="callout callout-success">
+                    <div class="callout-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                        </svg>
+                    </div>
+                    <div class="callout-content">
+                        <strong>What Vibes Created:</strong> Vibes automatically:
+                        <ul style="margin-top: 0.5rem; margin-bottom: 0;">
+                            <li>✓ Generated the LoyaltyPointsAction Apex class</li>
+                            <li>✓ Added the Loyalty subagent to your Pronto agent metadata</li>
+                            <li>✓ Connected the Get Loyalty Points action to the subagent</li>
+                            <li>✓ Configured the subagent description and instructions</li>
+                        </ul>
+                    </div>
+                </div>
 
                 <div class="callout callout-info">
                     <div class="callout-icon">
@@ -477,44 +485,7 @@ Please create a plan first, then I'll review it before you proceed.</code></pre>
                         </svg>
                     </div>
                     <div class="callout-content">
-                        <strong>TIP:</strong> The description helps the main Pronto agent understand when to route queries to this subagent. Include keywords that customers might use (loyalty, points, rewards, membership).
-                    </div>
-                </div>
-
-                <h3>Add Subagent Instructions</h3>
-                <p>Instructions define how the Loyalty subagent should behave and when to use its actions. Clear instructions ensure accurate routing and helpful responses.</p>
-
-                <div class="code-example">
-                    <div class="code-header">
-                        <span class="code-label">Subagent Instructions</span>
-                        <button class="copy-btn">Copy</button>
-                    </div>
-                    <pre><code>You help customers with loyalty program questions.
-
-When a customer asks about their loyalty points balance, use the Get Loyalty Points action. Ask for their email address if they haven't provided it.
-
-Program details:
-- Customers earn 1 point per dollar spent
-- 100 points = $1 off future orders
-
-Be friendly and enthusiastic about helping customers with their rewards.</code></pre>
-                </div>
-
-                <ol class="step-list">
-                    <li>Open your newly created <strong>Loyalty</strong> subagent</li>
-                    <li>Find the <strong>Instructions</strong> field</li>
-                    <li>Paste the instructions above into the field</li>
-                    <li>Click <strong>Save</strong></li>
-                </ol>
-
-                <div class="callout callout-warning">
-                    <div class="callout-icon">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
-                        </svg>
-                    </div>
-                    <div class="callout-content">
-                        <strong>Important:</strong> Well-written instructions are crucial for subagent routing. The main Pronto agent uses the description and instructions to decide when to activate this subagent. Clear guidelines about when to use actions (like "Get Loyalty Points") ensure the subagent behaves correctly.
+                        <strong>Understanding Subagents:</strong> Subagents are defined within the parent agent's metadata file. When Vibes updated your Pronto agent configuration, it added the Loyalty subagent as a child component with its own description, instructions, and action references.
                     </div>
                 </div>
             </section>
@@ -522,45 +493,6 @@ Be friendly and enthusiastic about helping customers with their rewards.</code><
             <section id="step4" class="content-section">
                 <div class="step-header">
                     <span class="step-number">4</span>
-                    <h2>Add Loyalty Points Action</h2>
-                </div>
-
-                <h3>Add Action to Loyalty Subagent</h3>
-                <p>Now wire the action into your Loyalty subagent:</p>
-
-                <ol class="step-list">
-                    <li>Return to <strong>Agent Builder</strong> in your Salesforce org</li>
-                    <li>Open your <strong>Pronto Agent</strong></li>
-                    <li>Navigate to the <strong>Loyalty subagent</strong> you just created</li>
-                    <li>In the subagent view, click the <strong>Actions</strong> tab</li>
-                    <li>Click <strong>New Action</strong></li>
-                    <li>Select <strong>Apex</strong> as the action type</li>
-                    <li>Search for and select <strong>LoyaltyPointsAction</strong></li>
-                    <li>Verify the action label is <strong>Get Loyalty Points</strong></li>
-                    <li>Review the Input/Output fields:
-                        <ul>
-                            <li><strong>Input:</strong> Customer Email (String)</li>
-                            <li><strong>Output:</strong> Points (Integer)</li>
-                        </ul>
-                    </li>
-                    <li>Click <strong>Save</strong></li>
-                </ol>
-
-                <div class="callout callout-info">
-                    <div class="callout-icon">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
-                        </svg>
-                    </div>
-                    <div class="callout-content">
-                        <strong>TIP:</strong> Because this action is added to the Loyalty subagent (not the main Pronto agent), it will only be available when the Loyalty subagent is activated.
-                    </div>
-                </div>
-            </section>
-
-            <section id="step5" class="content-section">
-                <div class="step-header">
-                    <span class="step-number">5</span>
                     <h2>Test the Loyalty Subagent</h2>
                 </div>
 
@@ -659,12 +591,12 @@ Be friendly and enthusiastic about helping customers with their rewards.</code><
                         <p>You successfully:</p>
                         <ul>
                             <li>✓ Launched and configured Agentforce Vibes in your Salesforce org</li>
-                            <li>✓ Retrieved project metadata to provide context to Vibes</li>
-                            <li>✓ Generated two production-ready Apex actions using natural language</li>
-                            <li>✓ Deployed OrderStatusAction and LoyaltyPointsAction to your org</li>
-                            <li>✓ Created a Loyalty subagent with custom instructions</li>
-                            <li>✓ Integrated the Get Loyalty Points action into your subagent</li>
-                            <li>✓ Verified agent routing and action execution in preview mode</li>
+                            <li>✓ Used Vibes to retrieve your Pronto agent metadata</li>
+                            <li>✓ Generated a production-ready LoyaltyPointsAction using natural language</li>
+                            <li>✓ Automatically created a Loyalty subagent within your Pronto agent</li>
+                            <li>✓ Configured subagent instructions and connected the action</li>
+                            <li>✓ Deployed everything to your org via Vibes' Plan → Act workflow</li>
+                            <li>✓ Verified subagent routing and action execution in preview mode</li>
                         </ul>
                     </div>
                 </div>
