@@ -1,5 +1,37 @@
 # Workshop Site Updates
 
+## Expanded Step 2 with Official Workshop Content (2026-05-19)
+
+### Added Complete MCP Configuration Steps
+Based on official Agentforce Vibes Workshop content:
+
+**1. Enable MCP Service (Beta)**
+- ✅ Navigate to Setup → User Interface
+- ✅ Enable "Enable MCP Service (Beta)"
+- ✅ Explained what MCP is and why it's needed
+
+**2. Activate Salesforce MCP Servers**
+- ✅ Setup → MCP Servers → Salesforce Servers
+- ✅ Activate sobject-all (access to all objects)
+- ✅ Activate salesforce-api-context (Salesforce API access)
+- ✅ Added TIP explaining why both are required
+
+**3. Configure MCP Servers in Vibes**
+- ✅ Manage MCP Servers in Vibes sidebar
+- ✅ Toggle on all three available servers
+- ✅ View configuration/tools for each server
+- ✅ Explained what tools each server provides
+
+### Why This Matters
+- Follows official Salesforce workshop structure
+- Ensures MCP is properly configured before metadata pull
+- Users understand WHY each step is necessary
+- Prevents "connection failed" errors later
+- Provides context for the Vibes-to-Salesforce connection
+
+### Content Source
+Adapted from: https://developer.salesforce.com/workshops/agentforce-vibes-workshop/explore-agentforce-vibes/2-configure-a-salesforce-project
+
 ## Added Retrieval Option Guidance (2026-05-19)
 
 ### Step 2: Choose Retrieval Option

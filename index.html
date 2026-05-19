@@ -222,8 +222,87 @@
                     <h2>Configure Your Salesforce Project</h2>
                 </div>
 
+                <p>Before building with Vibes, you need to enable key features in your Salesforce org and configure your development environment. This ensures Vibes can communicate with your org and access the right metadata.</p>
+
+                <h3>Enable MCP Service (Beta)</h3>
+                <p>MCP (Model Context Protocol) allows Vibes to connect to your Salesforce org using a standardized AI protocol.</p>
+
+                <ol class="step-list">
+                    <li>In your Salesforce org, navigate to <strong>Setup</strong></li>
+                    <li>In the Quick Find box, search for <strong>"User Interface"</strong></li>
+                    <li>Click <strong>User Interface</strong> in the results</li>
+                    <li>Scroll down and check the box for <strong>"Enable MCP Service (Beta)"</strong></li>
+                    <li>Click <strong>Save</strong></li>
+                </ol>
+
+                <div class="callout callout-info">
+                    <div class="callout-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="callout-content">
+                        <strong>What is MCP?</strong> Model Context Protocol (MCP) is an open standard that allows AI tools like Vibes to securely communicate with your Salesforce org, read metadata, and execute commands. Enabling this service allows Vibes to understand your org's structure.
+                    </div>
+                </div>
+
+                <h3>Activate Salesforce MCP Servers</h3>
+                <p>MCP Servers provide specific capabilities to Vibes, like reading objects or accessing Salesforce APIs.</p>
+
+                <ol class="step-list">
+                    <li>In Setup, search for <strong>"MCP Servers"</strong> in Quick Find</li>
+                    <li>Click <strong>MCP Servers</strong></li>
+                    <li>Under the <strong>Salesforce Servers</strong> tab, you'll see available servers</li>
+                    <li>Activate these two servers by clicking the toggle or checkbox:
+                        <ul>
+                            <li><strong>sobject-all</strong> — Provides access to all standard and custom objects</li>
+                            <li><strong>salesforce-api-context</strong> — Provides Salesforce API context and metadata</li>
+                        </ul>
+                    </li>
+                    <li>Verify both servers show as "Active" or "Enabled"</li>
+                </ol>
+
+                <div class="callout callout-info">
+                    <div class="callout-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="callout-content">
+                        <strong>TIP:</strong> Both servers are required for complete functionality. The sobject-all server lets Vibes understand your custom objects like Order__c, while salesforce-api-context provides general Salesforce metadata access.
+                    </div>
+                </div>
+
+                <h3>Configure MCP Servers in Vibes</h3>
+                <p>Now that MCP is enabled in your org, configure it within the Agentforce Vibes interface.</p>
+
+                <ol class="step-list">
+                    <li>In the Agentforce Vibes window, look for the <strong>Agentforce Vibes Sidebar</strong> (usually on the left)</li>
+                    <li>Click <strong>Manage MCP Servers</strong> or find the MCP Server management section</li>
+                    <li>You should see a list of available MCP servers</li>
+                    <li><strong>Toggle on</strong> or activate all three servers:
+                        <ul>
+                            <li>sobject-all</li>
+                            <li>salesforce-api-context</li>
+                            <li>Any additional Salesforce-related servers shown</li>
+                        </ul>
+                    </li>
+                    <li>Click the <strong>configuration icon</strong> (gear or settings) next to each server to verify available tools</li>
+                </ol>
+
+                <div class="callout callout-info">
+                    <div class="callout-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="callout-content">
+                        <strong>TIP:</strong> When you configure a server, you'll see the tools it provides (like Salesforce DX commands). This shows what Vibes can do with that connection.
+                    </div>
+                </div>
+
                 <h3>Open the Agentforce Chat Panel</h3>
-                <p>Before building, Vibes needs context about your org's metadata. First, let's open the AI chat interface.</p>
+                <p>With MCP configured, you're ready to start interacting with Vibes. Let's open the AI chat interface where you'll give instructions.</p>
 
                 <h3>Locating the Agentforce Chat Interface</h3>
                 <p>The Agentforce chat is your AI assistant within Vibes. Here's how to find it:</p>
@@ -256,7 +335,7 @@
                 </div>
 
                 <h3>Pull Project Metadata</h3>
-                <p>Now that the chat panel is open, let's retrieve the relevant objects and configurations for your Pronto agent.</p>
+                <p>Now that MCP is configured and the chat panel is open, you can ask Vibes to retrieve metadata from your org. This gives Vibes the context it needs about your Order__c object and Pronto agent configuration.</p>
 
                 <p><strong>In the Agentforce chat input box at the bottom of the chat panel</strong>, type this prompt:</p>
 
