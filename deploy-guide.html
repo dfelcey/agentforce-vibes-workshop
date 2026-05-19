@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publishing from Agentforce Vibes to GitHub | Deployment Guide</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="alternate icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <svg class="logo-icon" width="28" height="20" viewBox="0 0 28 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.6 0L10.4 6.4L4 9.6L10.4 12.8L13.6 19.2L16.8 12.8L23.2 9.6L16.8 6.4L13.6 0Z" fill="#00A1E0"/>
+                    <circle cx="4.8" cy="4.8" r="4.8" fill="#0176D3"/>
+                    <circle cx="22.4" cy="14.4" r="4.8" fill="#0176D3"/>
+                </svg>
+                <span class="brand-text">Deployment Guide</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Workshop</a>
+                <a href="deploy-guide.html">Deploy to GitHub</a>
+                <a href="https://github.com" class="btn-secondary" target="_blank">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                    </svg>
+                    GitHub
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Publishing to GitHub</h2>
+            </div>
+            <nav class="side-nav">
+                <div class="nav-group">
+                    <div class="nav-group-title">Getting Started</div>
+                    <ul class="nav-list">
+                        <li><a href="#overview" class="nav-item active">Overview</a></li>
+                        <li><a href="#prerequisites" class="nav-item">Prerequisites</a></li>
+                    </ul>
+                </div>
+                <div class="nav-group">
+                    <div class="nav-group-title">Setup Steps</div>
+                    <ul class="nav-list">
+                        <li><a href="#step1" class="nav-item">1. Authenticate CLI</a></li>
+                        <li><a href="#step2" class="nav-item">2. Create SFDX Project</a></li>
+                        <li><a href="#step3" class="nav-item">3. Retrieve Metadata</a></li>
+                    </ul>
+                </div>
+                <div class="nav-group">
+                    <div class="nav-group-title">Publish to GitHub</div>
+                    <ul class="nav-list">
+                        <li><a href="#step4" class="nav-item">4. Initialize Git</a></li>
+                        <li><a href="#step5" class="nav-item">5. Create GitHub Repo</a></li>
+                        <li><a href="#step6" class="nav-item">6. Push to GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="nav-group">
+                    <div class="nav-group-title">Additional Topics</div>
+                    <ul class="nav-list">
+                        <li><a href="#workflow" class="nav-item">Ongoing Workflow</a></li>
+                        <li><a href="#troubleshooting" class="nav-item">Troubleshooting</a></li>
+                        <li><a href="#resources" class="nav-item">Resources</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="content">
+            <div class="breadcrumb">
+                <a href="index.html">Workshop</a>
+                <span class="separator">/</span>
+                <span class="current">Publishing from Vibes to GitHub</span>
+            </div>
+
+            <header class="page-header">
+                <h1>Publishing from Agentforce Vibes to GitHub</h1>
+                <p class="lead">A complete guide for exporting your Vibes-generated code from Salesforce and publishing it to GitHub for version control and collaboration</p>
+            </header>
+
+            <section id="overview" class="content-section">
+                <h2>Overview</h2>
+                <p>When you build with Agentforce Vibes inside Salesforce, your code lives in your org. To version control it, deploy it to other orgs, or share it with your team, you need to export it to GitHub using the Salesforce CLI.</p>
+
+                <p>This guide will walk you through the complete process of:</p>
+                <ul>
+                    <li>Setting up the Salesforce CLI</li>
+                    <li>Retrieving your Vibes-generated code</li>
+                    <li>Creating a local Salesforce DX project</li>
+                    <li>Publishing to GitHub</li>
+                    <li>Deploying to other Salesforce orgs</li>
+                </ul>
+            </section>
+
+            <section id="prerequisites" class="content-section">
+                <h2>Prerequisites</h2>
+                <p>Before you begin, ensure you have:</p>
+
+                <ul>
+                    <li><strong>Salesforce CLI</strong> — Install from <a href="https://developer.salesforce.com/tools/salesforcecli" target="_blank">developer.salesforce.com/tools/salesforcecli</a></li>
+                    <li><strong>GitHub Account</strong> — Create at <a href="https://github.com/signup" target="_blank">github.com/signup</a></li>
+                    <li><strong>Git</strong> — Install from <a href="https://git-scm.com/downloads" target="_blank">git-scm.com/downloads</a></li>
+                    <li><strong>Salesforce Org Access</strong> — Access to your org where you used Agentforce Vibes</li>
+                </ul>
+
+                <div class="callout callout-info">
+                    <div class="callout-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="callout-content">
+                        <strong>TIP:</strong> New to Salesforce CLI? See the <a href="https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm" target="_blank">Salesforce CLI Setup Guide</a> for complete installation and configuration instructions.
+                    </div>
+                </div>
+            </section>
+
+            <section id="step1" class="content-section">
+                <div class="step-header">
+                    <span class="step-number">1</span>
+                    <h2>Authenticate Salesforce CLI</h2>
+                </div>
+
+                <p>First, authenticate the Salesforce CLI with your org where you used Agentforce Vibes:</p>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">Terminal</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <pre><code>sf org login web --alias my-vibes-org</code></pre>
+                </div>
+
+                <p>This command will:</p>
+                <ol class="step-list">
+                    <li>Open your default browser</li>
+                    <li>Prompt you to log in to Salesforce</li>
+                    <li>Save the authentication with the alias "my-vibes-org"</li>
+                </ol>
+
+                <h3>Verify Your Connection</h3>
+                <p>Confirm the CLI is connected to your org:</p>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">Terminal</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <pre><code>sf org list</code></pre>
+                </div>
+
+                <p>You should see your org listed with the alias you created.</p>
+
+                <div class="callout callout-info">
+                    <div class="callout-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="callout-content">
+                        <strong>TIP:</strong> Learn more about org authentication in the <a href="https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_auth.htm" target="_blank">Salesforce CLI Authorization Guide</a>.
+                    </div>
+                </div>
+            </section>
+
+            <section id="step2" class="content-section">
+                <div class="step-header">
+                    <span class="step-number">2</span>
+                    <h2>Create a Local Salesforce DX Project</h2>
+                </div>
+
+                <p>Create a new Salesforce DX project structure on your local machine:</p>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">Terminal</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <pre><code># Create project directory
+mkdir pronto-vibes-extension
+cd pronto-vibes-extension
+
+# Initialize Salesforce DX project
+sf project generate --name pronto-vibes-extension</code></pre>
+                </div>
+
+                <h3>Project Structure Created</h3>
+                <p>Your new project will have this structure:</p>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">File Structure</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <pre><code>pronto-vibes-extension/
+├── force-app/
+│   └── main/
+│       └── default/
+│           ├── classes/
+│           ├── objects/
+│           └── ...
+├── sfdx-project.json
+├── config/
+└── scripts/</code></pre>
+                </div>
+
+                <div class="callout callout-info">
+                    <div class="callout-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="callout-content">
+                        <strong>TIP:</strong> Learn about Salesforce DX project structure in the <a href="https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm" target="_blank">Salesforce DX Project Configuration Guide</a>.
+                    </div>
+                </div>
+            </section>
+
+            <section id="step3" class="content-section">
+                <div class="step-header">
+                    <span class="step-number">3</span>
+                    <h2>Retrieve Metadata from Your Org</h2>
+                </div>
+
+                <p>Pull the code you created in Agentforce Vibes from your Salesforce org:</p>
+
+                <h3>Option 1: Retrieve Specific Components</h3>
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">Terminal</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <pre><code># Retrieve your Apex classes
+sf project retrieve start --metadata ApexClass:OrderStatusAction --target-org my-vibes-org
+sf project retrieve start --metadata ApexClass:OrderStatusActionTest --target-org my-vibes-org
+
+# Retrieve custom objects
+sf project retrieve start --metadata CustomObject:Order__c --target-org my-vibes-org</code></pre>
+                </div>
+
+                <h3>Option 2: Use a Manifest File</h3>
+                <p>Create a <code>package.xml</code> file to specify exactly what to retrieve:</p>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">package.xml</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;Package xmlns="http://soap.sforce.com/2006/04/metadata"&gt;
+    &lt;types&gt;
+        &lt;members&gt;OrderStatusAction&lt;/members&gt;
+        &lt;members&gt;OrderStatusActionTest&lt;/members&gt;
+        &lt;name&gt;ApexClass&lt;/name&gt;
+    &lt;/types&gt;
+    &lt;types&gt;
+        &lt;members&gt;Order__c&lt;/members&gt;
+        &lt;name&gt;CustomObject&lt;/name&gt;
+    &lt;/types&gt;
+    &lt;version&gt;60.0&lt;/version&gt;
+&lt;/Package&gt;</code></pre>
+                </div>
+
+                <p>Then retrieve using the manifest:</p>
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">Terminal</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <pre><code>sf project retrieve start --manifest package.xml --target-org my-vibes-org</code></pre>
+                </div>
+
+                <h3>Verify Retrieved Files</h3>
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">Terminal</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <pre><code>ls -la force-app/main/default/classes/
+ls -la force-app/main/default/objects/</code></pre>
+                </div>
+
+                <div class="callout callout-info">
+                    <div class="callout-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="callout-content">
+                        <strong>TIP:</strong> See the <a href="https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference_project_commands_unified.htm" target="_blank">Salesforce CLI Project Commands Reference</a> for all retrieve options.
+                    </div>
+                </div>
+            </section>
+
+            <section id="step4" class="content-section">
+                <div class="step-header">
+                    <span class="step-number">4</span>
+                    <h2>Initialize Git Repository</h2>
+                </div>
+
+                <p>Set up version control for your retrieved code:</p>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">Terminal</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <pre><code># Initialize git
+git init
+
+# Create .gitignore for Salesforce projects
+cat &gt; .gitignore &lt;&lt; 'EOF'
+# Salesforce
+.sfdx/
+.sf/
+.localdevserver/
+config/*.org
+.vscode/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Dependencies
+node_modules/
+EOF
+
+# Add all files
+git add .
+
+# Create initial commit
+git commit -m "Initial commit: Vibes-generated OrderStatusAction for Pronto agent"</code></pre>
+                </div>
+
+                <div class="callout callout-info">
+                    <div class="callout-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="callout-content">
+                        <strong>TIP:</strong> New to Git? Check out the <a href="https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control" target="_blank">Pro Git Book</a> for a comprehensive introduction.
+                    </div>
+                </div>
+            </section>
+
+            <section id="step5" class="content-section">
+                <div class="step-header">
+                    <span class="step-number">5</span>
+                    <h2>Create GitHub Repository</h2>
+                </div>
+
+                <h3>Option A: Via GitHub Web UI</h3>
+                <ol class="step-list">
+                    <li>Go to <a href="https://github.com/new" target="_blank">github.com/new</a></li>
+                    <li>Repository name: <code>pronto-vibes-extension</code></li>
+                    <li>Description: "Custom Apex actions for Pronto agent built with Agentforce Vibes"</li>
+                    <li>Choose <strong>Public</strong> or <strong>Private</strong></li>
+                    <li><strong>Do NOT</strong> initialize with README (you already have files)</li>
+                    <li>Click <strong>Create repository</strong></li>
+                </ol>
+
+                <h3>Option B: Via GitHub CLI</h3>
+                <p>If you have the GitHub CLI installed:</p>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">Terminal</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <pre><code>gh repo create pronto-vibes-extension --public --source=. --remote=origin --push</code></pre>
+                </div>
+
+                <div class="callout callout-info">
+                    <div class="callout-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="callout-content">
+                        <strong>TIP:</strong> Learn more in the <a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/quickstart-for-repositories" target="_blank">GitHub Repositories Quickstart Guide</a>.
+                    </div>
+                </div>
+            </section>
+
+            <section id="step6" class="content-section">
+                <div class="step-header">
+                    <span class="step-number">6</span>
+                    <h2>Push to GitHub</h2>
+                </div>
+
+                <p>Link your local repository to GitHub and push your code:</p>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">Terminal</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <pre><code># Add GitHub remote (replace YOUR_USERNAME)
+git remote add origin https://github.com/YOUR_USERNAME/pronto-vibes-extension.git
+
+# Push to GitHub
+git branch -M main
+git push -u origin main</code></pre>
+                </div>
+
+                <h3>Verify Your Code on GitHub</h3>
+                <p>Visit <code>https://github.com/YOUR_USERNAME/pronto-vibes-extension</code> to see your published code!</p>
+
+                <div class="callout callout-success">
+                    <div class="callout-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                        </svg>
+                    </div>
+                    <div class="callout-content">
+                        <h3>Success!</h3>
+                        <p>Your Vibes-generated code is now on GitHub, ready for:</p>
+                        <ul>
+                            <li>Version control and collaboration</li>
+                            <li>Deployment to other Salesforce orgs</li>
+                            <li>Sharing with your team</li>
+                            <li>CI/CD pipeline integration</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="workflow" class="content-section">
+                <h2>Ongoing Workflow</h2>
+
+                <h3>When You Make Changes in Vibes</h3>
+                <ol class="step-list">
+                    <li><strong>Make changes</strong> in Agentforce Vibes in Salesforce</li>
+                    <li><strong>Retrieve updates</strong> to your local project:</li>
+                </ol>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">Terminal</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <pre><code>sf project retrieve start --metadata ApexClass:OrderStatusAction --target-org my-vibes-org</code></pre>
+                </div>
+
+                <ol class="step-list" start="3">
+                    <li><strong>Review changes:</strong></li>
+                </ol>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">Terminal</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <pre><code>git status
+git diff</code></pre>
+                </div>
+
+                <ol class="step-list" start="4">
+                    <li><strong>Commit and push:</strong></li>
+                </ol>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">Terminal</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <pre><code>git add .
+git commit -m "Update: Enhanced error handling in OrderStatusAction"
+git push</code></pre>
+                </div>
+
+                <h3>Deploy to Another Org</h3>
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">Terminal</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <pre><code># Authenticate with target org
+sf org login web --alias target-org
+
+# Deploy your code
+sf project deploy start --target-org target-org
+
+# Validate before deploying to production
+sf project deploy validate --target-org production-org --test-level RunLocalTests</code></pre>
+                </div>
+
+                <div class="callout callout-info">
+                    <div class="callout-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="callout-content">
+                        <strong>TIP:</strong> Learn about deployment strategies in the <a href="https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_develop_deploy.htm" target="_blank">Salesforce DX Deployment Guide</a>.
+                    </div>
+                </div>
+            </section>
+
+            <section id="troubleshooting" class="content-section">
+                <h2>Troubleshooting</h2>
+
+                <h3>Issue: "This directory does not contain a valid Salesforce DX project"</h3>
+                <p><strong>Solution:</strong></p>
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">Terminal</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <pre><code># Ensure you're in the project directory
+cd pronto-vibes-extension
+
+# Verify sfdx-project.json exists
+ls sfdx-project.json</code></pre>
+                </div>
+
+                <h3>Issue: "No Salesforce org is authenticated"</h3>
+                <p><strong>Solution:</strong></p>
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">Terminal</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <pre><code># List authenticated orgs
+sf org list
+
+# Re-authenticate
+sf org login web --alias my-vibes-org</code></pre>
+                </div>
+
+                <h3>Issue: "Unable to retrieve metadata"</h3>
+                <p><strong>Solution:</strong></p>
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">Terminal</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <pre><code># Check metadata API name (case-sensitive)
+sf org list metadata --metadata-type ApexClass --target-org my-vibes-org
+
+# Use exact names from output
+sf project retrieve start --metadata ApexClass:OrderStatusAction --target-org my-vibes-org</code></pre>
+                </div>
+
+                <h3>Issue: Push rejected (non-fast-forward)</h3>
+                <p><strong>Solution:</strong></p>
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">Terminal</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <pre><code># Pull latest changes first
+git pull origin main --rebase
+
+# Then push
+git push</code></pre>
+                </div>
+            </section>
+
+            <section id="resources" class="content-section">
+                <h2>Resources</h2>
+
+                <h3>Salesforce CLI & DX</h3>
+                <ul class="resource-list">
+                    <li><a href="https://developer.salesforce.com/tools/salesforcecli" target="_blank">Salesforce CLI Homepage</a></li>
+                    <li><a href="https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm" target="_blank">Salesforce CLI Setup Guide</a></li>
+                    <li><a href="https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/" target="_blank">Salesforce CLI Command Reference</a></li>
+                    <li><a href="https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/" target="_blank">Salesforce DX Developer Guide</a></li>
+                    <li><a href="https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/" target="_blank">Metadata API Developer Guide</a></li>
+                </ul>
+
+                <h3>Git & GitHub</h3>
+                <ul class="resource-list">
+                    <li><a href="https://docs.github.com/en/get-started/quickstart" target="_blank">GitHub Quickstart</a></li>
+                    <li><a href="https://docs.github.com/en/repositories" target="_blank">GitHub Repositories Documentation</a></li>
+                    <li><a href="https://cli.github.com/" target="_blank">GitHub CLI</a></li>
+                    <li><a href="https://git-scm.com/book/en/v2" target="_blank">Pro Git Book</a></li>
+                    <li><a href="https://git-scm.com/downloads" target="_blank">Download Git</a></li>
+                </ul>
+
+                <h3>Agentforce & Vibes</h3>
+                <ul class="resource-list">
+                    <li><a href="https://developer.salesforce.com/docs/einstein/genai/guide/agentforce-vibes.html" target="_blank">Agentforce Vibes Documentation</a></li>
+                    <li><a href="https://developer.salesforce.com/docs/einstein/genai/guide/agentforce-understand.html" target="_blank">Agentforce Builder Guide</a></li>
+                    <li><a href="index.html">Extend Pronto with Agentforce Vibes Workshop</a></li>
+                </ul>
+            </section>
+
+            <footer class="page-footer">
+                <div class="footer-nav">
+                    <a href="index.html" class="footer-link">← Back to Workshop</a>
+                    <a href="#overview" class="footer-link">Back to Top ↑</a>
+                </div>
+                <p>© 2026 Salesforce, Inc. All rights reserved.</p>
+            </footer>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

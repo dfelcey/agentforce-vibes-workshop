@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extend Pronto with Agentforce Vibes | Salesforce Workshop</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="alternate icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <svg class="logo-icon" width="28" height="20" viewBox="0 0 28 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.6 0L10.4 6.4L4 9.6L10.4 12.8L13.6 19.2L16.8 12.8L23.2 9.6L16.8 6.4L13.6 0Z" fill="#00A1E0"/>
+                    <circle cx="4.8" cy="4.8" r="4.8" fill="#0176D3"/>
+                    <circle cx="22.4" cy="14.4" r="4.8" fill="#0176D3"/>
+                </svg>
+                <span class="brand-text">Agentforce Vibes Workshop</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Workshop</a>
+                <a href="deploy-guide.html">Deploy to GitHub</a>
+                <a href="https://github.com" class="btn-secondary" target="_blank">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                    </svg>
+                    GitHub
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Extend Pronto with Agentforce Vibes</h2>
+            </div>
+            <nav class="side-nav">
+                <div class="nav-group">
+                    <div class="nav-group-title">Getting Started</div>
+                    <ul class="nav-list">
+                        <li><a href="#overview" class="nav-item active">Workshop Overview</a></li>
+                        <li><a href="#prerequisites" class="nav-item">Prerequisites</a></li>
+                    </ul>
+                </div>
+                <div class="nav-group">
+                    <div class="nav-group-title">Setup Agentforce Vibes</div>
+                    <ul class="nav-list">
+                        <li><a href="#step1" class="nav-item">1. Launch Agentforce Vibes</a></li>
+                        <li><a href="#step2" class="nav-item">2. Configure Your Project</a></li>
+                    </ul>
+                </div>
+                <div class="nav-group">
+                    <div class="nav-group-title">Build the Action</div>
+                    <ul class="nav-list">
+                        <li><a href="#step3" class="nav-item">3. Generate Apex Action</a></li>
+                        <li><a href="#step4" class="nav-item">4. Deploy to Your Org</a></li>
+                    </ul>
+                </div>
+                <div class="nav-group">
+                    <div class="nav-group-title">Configure & Test</div>
+                    <ul class="nav-list">
+                        <li><a href="#step5" class="nav-item">5. Configure Agent Action</a></li>
+                        <li><a href="#step6" class="nav-item">6. Test Your Action</a></li>
+                    </ul>
+                </div>
+                <div class="nav-group">
+                    <div class="nav-group-title">Wrap Up</div>
+                    <ul class="nav-list">
+                        <li><a href="#success" class="nav-item">Congratulations</a></li>
+                        <li><a href="#bonus" class="nav-item">Next Steps</a></li>
+                        <li><a href="#resources" class="nav-item">Resources</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="content">
+            <div class="breadcrumb">
+                <a href="#">Home</a>
+                <span class="separator">/</span>
+                <a href="#">Workshops</a>
+                <span class="separator">/</span>
+                <span class="current">Extend Pronto with Agentforce Vibes</span>
+            </div>
+
+            <header class="page-header">
+                <h1>Extend Pronto with Agentforce Vibes</h1>
+                <p class="lead">Learn how to use Agentforce Vibes within Salesforce to build and deploy Apex actions for your Pronto agent using natural language</p>
+            </header>
+
+            <section id="overview" class="content-section">
+                <h2>Workshop Overview</h2>
+                <p>In this workshop, you'll learn how to use <strong>Agentforce Vibes</strong> — Salesforce's enterprise-grade AI-powered development environment — to extend your Pronto agent with custom Apex actions. You'll work directly within your Salesforce org to build, deploy, and test new agent capabilities using natural language prompts.</p>
+
+                <h3>What You'll Learn</h3>
+                <ul>
+                    <li>How to launch and configure Agentforce Vibes within your Salesforce org</li>
+                    <li>How to use natural language to generate production-ready Apex code</li>
+                    <li>How to deploy and test Apex actions for Agentforce agents</li>
+                    <li>How to integrate custom actions into Pronto subagents</li>
+                </ul>
+
+                <h3>What You'll Build</h3>
+                <p>A complete <code>Get Order Status</code> Apex action that allows the Pronto Customer Service subagent to look up order information and delivery dates for customers.</p>
+
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-card-icon">⏱️</div>
+                        <div class="info-card-content">
+                            <h4>Duration</h4>
+                            <p>~30 minutes</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-icon">📚</div>
+                        <div class="info-card-content">
+                            <h4>Level</h4>
+                            <p>Intermediate</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="prerequisites" class="content-section">
+                <h2>Prerequisites</h2>
+                <p>Before starting this workshop, ensure you have:</p>
+
+                <ul>
+                    <li><strong>Salesforce Org Access</strong> — A Salesforce org with Agentforce enabled</li>
+                    <li><strong>Pronto Agent</strong> — A configured Pronto agent with the Customer Service subagent (complete the core Agentforce Builder Workshop first)</li>
+                    <li><strong>Order Object</strong> — The <code>Order__c</code> custom object with fields: <code>Order_Number__c</code>, <code>Status__c</code>, and <code>Estimated_Delivery_Date__c</code></li>
+                    <li><strong>System Permissions</strong> — Ability to create and deploy Apex classes and modify Agentforce agents</li>
+                </ul>
+
+                <div class="callout callout-info">
+                    <div class="callout-icon">ℹ️</div>
+                    <div class="callout-content">
+                        <strong>New to Agentforce Vibes?</strong> This workshop introduces you to Vibes as you build. No prior experience with Vibes is required, but familiarity with Salesforce DX and Apex development concepts is helpful.
+                    </div>
+                </div>
+            </section>
+
+            <section id="step1" class="content-section">
+                <div class="step-header">
+                    <span class="step-number">1</span>
+                    <h2>Launch Agentforce Vibes</h2>
+                </div>
+
+                <h3>What is Agentforce Vibes?</h3>
+                <p>Agentforce Vibes is Salesforce's enterprise-grade AI-powered development environment. Unlike basic code assistants that generate snippets, Vibes understands your org's metadata, follows established patterns, and works as an autonomous coding partner that can plan, build, test, and deploy through natural language interaction.</p>
+
+                <h3>Access Vibes in Your Salesforce Org</h3>
+                <ol class="step-list">
+                    <li>Log in to your Salesforce org at <a href="https://login.salesforce.com" target="_blank">login.salesforce.com</a></li>
+                    <li>From Setup, enter <strong>Agentforce Vibes</strong> in the Quick Find box</li>
+                    <li>Click <strong>Agentforce Vibes</strong> to open the IDE interface</li>
+                </ol>
+
+                <img src="assets/launch-vibes.webp" alt="Screenshot showing Setup menu with Agentforce Vibes option highlighted" class="screenshot">
+
+                <ol class="step-list" start="4">
+                    <li>Accept the terms and conditions if this is your first time launching Vibes</li>
+                    <li>Wait for Vibes to initialize — it will automatically create a Salesforce DX project connected to your org</li>
+                </ol>
+
+                <img src="assets/meet-agentforce.webp" alt="Screenshot showing Meet Agentforce Vibes welcome screen with terms agreement" class="screenshot">
+
+                <div class="callout callout-info">
+                    <div class="callout-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="callout-content">
+                        <strong>TIP:</strong> On first launch, Vibes will analyze your org's metadata and create a project structure. This may take a few moments. You'll see a VS Code-compatible editor with an Explorer panel, Org Browser, terminal, and the Agentforce chat interface.
+                    </div>
+                </div>
+
+                <h3>Verify Your Environment</h3>
+                <p>Once Vibes loads, you'll see a VS Code-compatible interface. Take a moment to familiarize yourself with the key areas:</p>
+
+                <ul>
+                    <li><strong>Activity Bar (left)</strong> — Contains icons for Explorer, Search, Source Control, and Extensions
+                        <img src="assets/sidebar-explorer.webp" alt="Explorer sidebar icon" class="screenshot-small">
+                    </li>
+                    <li><strong>Org Browser</strong> — Shows your connected org and metadata (cloud icon in Activity Bar)
+                        <img src="assets/sidebar-org-browser.webp" alt="Org Browser with cloud icon showing connected org" class="screenshot-small">
+                    </li>
+                    <li><strong>Agentforce Chat</strong> — The AI assistant panel on the right side</li>
+                    <li><strong>Terminal</strong> — Accessible at the bottom for running CLI commands</li>
+                    <li><strong>Status Bar</strong> — Shows your org connection status at the bottom</li>
+                </ul>
+
+                <p>Verify your environment is ready:</p>
+                <ul>
+                    <li>✓ The Org Browser shows your connected org name</li>
+                    <li>✓ The Agentforce chat panel is visible on the right</li>
+                    <li>✓ The terminal is accessible at the bottom</li>
+                    <li>✓ You can see your org's metadata in the Explorer</li>
+                </ul>
+            </section>
+
+            <section id="step2" class="content-section">
+                <div class="step-header">
+                    <span class="step-number">2</span>
+                    <h2>Configure Your Salesforce Project</h2>
+                </div>
+
+                <h3>Pull Project Metadata</h3>
+                <p>Before building, Vibes needs context about your org's metadata. Let's retrieve the relevant objects and configurations for your Pronto agent.</p>
+
+                <p>In the Agentforce Vibes chat, type:</p>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">Prompt</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <pre><code>Pull metadata for Order__c object, Pronto agent configuration, and Customer Service subagent</code></pre>
+                </div>
+
+                <p>Vibes will retrieve:</p>
+                <ul>
+                    <li>The <code>Order__c</code> custom object definition and fields</li>
+                    <li>Your Pronto agent and subagent configurations</li>
+                    <li>Related permission sets and profiles</li>
+                    <li>Existing Apex classes and Lightning Web Components</li>
+                </ul>
+
+                <div class="callout callout-info">
+                    <div class="callout-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="callout-content">
+                        <strong>TIP:</strong> By pulling metadata first, Vibes understands your org's schema, naming conventions, and existing patterns. This ensures generated code follows your org's standards and integrates seamlessly.
+                    </div>
+                </div>
+
+                <h3>Verify Metadata Retrieval</h3>
+                <p>After the pull completes, check your Explorer panel:</p>
+                <ul>
+                    <li>Expand <code>force-app/main/default/objects/Order__c</code></li>
+                    <li>Verify you see the object definition and field files</li>
+                    <li>Check that agent configurations appear under <code>aiApplicationConfigs</code></li>
+                </ul>
+
+                <p>You're now ready to start building!</p>
+            </section>
+
+            <section id="step3" class="content-section">
+                <div class="step-header">
+                    <span class="step-number">3</span>
+                    <h2>Generate the Apex Action</h2>
+                </div>
+
+                <h3>Use Natural Language to Build</h3>
+                <p>Now comes the powerful part — you'll use natural language to generate a production-ready Apex action. Vibes will understand your requirements and create complete, tested code.</p>
+
+                <p>In the Agentforce Vibes chat, enter this prompt:</p>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">Prompt</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <pre><code>Create an Apex class called OrderStatusAction that is invocable from Agentforce. It should accept an order number as a string input, query the Order__c object for a matching record, and return the order status and estimated delivery date as output strings. Include proper error handling and a test class with 100% coverage.</code></pre>
+                </div>
+
+                <h3>Review the Generated Code</h3>
+                <p>Vibes will generate several files. Review them to understand what was created:</p>
+
+                <ol class="step-list">
+                    <li><strong>OrderStatusAction.cls</strong> — The main Apex class with <code>@InvocableMethod</code> annotation</li>
+                    <li><strong>OrderStatusActionTest.cls</strong> — Complete test class with assertions</li>
+                    <li>Vibes automatically follows Salesforce best practices and your org's coding patterns</li>
+                </ol>
+
+                <div class="callout callout-info">
+                    <div class="callout-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="callout-content">
+                        <strong>TIP:</strong> Check that the SOQL query includes <code>Order_Number__c</code>, <code>Status__c</code>, and <code>Estimated_Delivery_Date__c</code> fields. The method should be properly annotated with a descriptive label for Agent Builder.
+                    </div>
+                </div>
+
+                <h3>Request Modifications (Optional)</h3>
+                <p>If you need changes, simply ask Vibes in natural language:</p>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">Example refinement prompts</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <pre><code>Add a return value for customer email
+Handle the case when no order is found
+Update the method description to be more specific</code></pre>
+                </div>
+            </section>
+
+            <section id="step4" class="content-section">
+                <div class="step-header">
+                    <span class="step-number">4</span>
+                    <h2>Deploy to Your Org</h2>
+                </div>
+
+                <h3>Deploy with Vibes</h3>
+                <p>Once you're satisfied with the generated code, deploy it directly from Vibes to your org.</p>
+
+                <p>In the Agentforce chat, tell Vibes to deploy:</p>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">Prompt</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <pre><code>Deploy the OrderStatusAction class and test class to my org</code></pre>
+                </div>
+
+                <p>Vibes will:</p>
+                <ol class="step-list">
+                    <li>Run the Salesforce CLI command <code>sf project deploy start</code></li>
+                    <li>Execute the test class to verify coverage</li>
+                    <li>Report deployment status and any errors</li>
+                    <li>Show you the deployment results in the terminal</li>
+                </ol>
+
+                <h3>Verify Deployment</h3>
+                <p>Check that your deployment succeeded:</p>
+                <ul>
+                    <li>Look for "Deploy Succeeded" message in the terminal</li>
+                    <li>Verify test coverage is 100%</li>
+                    <li>Note the component IDs for the deployed classes</li>
+                </ul>
+
+                <div class="callout callout-warning">
+                    <div class="callout-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="callout-content">
+                        <strong>Deployment Errors?</strong> If you encounter errors, paste them back into the Vibes chat. Vibes will analyze the error, explain what went wrong, and automatically fix the code before redeploying.
+                    </div>
+                </div>
+            </section>
+
+            <section id="step5" class="content-section">
+                <div class="step-header">
+                    <span class="step-number">5</span>
+                    <h2>Configure the Agent Action</h2>
+                </div>
+
+                <h3>Add Action in Agentforce Builder</h3>
+                <p>Now that your Apex class is deployed, you'll wire it into your Pronto agent using Agent Builder.</p>
+
+                <ol class="step-list">
+                    <li>In a new browser tab, navigate to <strong>Setup</strong> in your Salesforce org</li>
+                    <li>Search for <strong>Agentforce Agents</strong> in Quick Find</li>
+                    <li>Open your <strong>Pronto Customer Service Agent</strong></li>
+                    <li>In the agent canvas, click <strong>New Action</strong></li>
+                    <li>Select <strong>Apex</strong> as the action type</li>
+                    <li>Search for and select <strong>OrderStatusAction</strong></li>
+                    <li>Set the action Label to <strong>Get Order Status</strong></li>
+                    <li>Review the auto-populated Input/Output fields:
+                        <ul>
+                            <li><strong>Input:</strong> Order Number (String)</li>
+                            <li><strong>Outputs:</strong> Status (String), Estimated Delivery Date (String)</li>
+                        </ul>
+                    </li>
+                    <li>Click <strong>Save</strong></li>
+                </ol>
+
+                <h3>Add Action to Customer Service Subagent</h3>
+                <ol class="step-list">
+                    <li>In Agent Builder, navigate to the <strong>Customer Service subagent</strong></li>
+                    <li>Click the <strong>Actions</strong> tab</li>
+                    <li>Click <strong>Add Action</strong> and select <strong>Get Order Status</strong></li>
+                    <li>In the <strong>Instructions</strong> field, add guidance for when to use this action:</li>
+                </ol>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">Subagent Instructions</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <pre><code>When a customer asks about their order status or delivery date, use the Get Order Status action with the order number they provide. If they don't provide an order number, ask for it first.</code></pre>
+                </div>
+
+                <ol class="step-list" start="5">
+                    <li>Click <strong>Save</strong></li>
+                </ol>
+            </section>
+
+            <section id="step6" class="content-section">
+                <div class="step-header">
+                    <span class="step-number">6</span>
+                    <h2>Test Your Action</h2>
+                </div>
+
+                <h3>Preview in Agent Builder</h3>
+                <p>Test your new action using Agent Builder's preview feature.</p>
+
+                <ol class="step-list">
+                    <li>In Agent Builder, click the <strong>Preview</strong> button in the top right</li>
+                    <li>Wait for the preview chat interface to load</li>
+                    <li>In the chat input, type a test query:</li>
+                </ol>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">Test Query</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <pre><code>What's the status of order ORD-12345?</code></pre>
+                </div>
+
+                <h3>Verify the Response</h3>
+                <p>Check that your action worked correctly:</p>
+
+                <ol class="step-list">
+                    <li>The agent should route your query to the Customer Service subagent</li>
+                    <li>You should see an indication that the <strong>Get Order Status</strong> action was called</li>
+                    <li>Click <strong>Interaction Details</strong> to see the full execution trace</li>
+                    <li>Verify the response includes:
+                        <ul>
+                            <li>Order number (ORD-12345)</li>
+                            <li>Current status (e.g., "Shipped", "Processing")</li>
+                            <li>Estimated delivery date</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <div class="callout callout-info">
+                    <div class="callout-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="callout-content">
+                        <strong>TIP:</strong> Try different scenarios to ensure your action handles edge cases:
+                        <ul>
+                            <li>Query with a non-existent order number</li>
+                            <li>Ask about order status without providing a number</li>
+                            <li>Try variations like "check my order" or "delivery status"</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Troubleshooting</h3>
+                <p>If the action doesn't work as expected:</p>
+                <ul>
+                    <li><strong>Action not called:</strong> Check the subagent instructions and ensure they clearly describe when to use the action</li>
+                    <li><strong>Error response:</strong> Review the Interaction Details for error messages and verify the Order__c object has test data</li>
+                    <li><strong>Missing data:</strong> Ensure your test order record has all required fields populated</li>
+                </ul>
+            </section>
+
+            <section id="success" class="content-section">
+                <h2>🎉 Congratulations!</h2>
+                <p>You've successfully completed the workshop and learned how to extend Pronto agents using Agentforce Vibes.</p>
+
+                <h3>What You Accomplished</h3>
+                <div class="callout callout-success">
+                    <div class="callout-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                        </svg>
+                    </div>
+                    <div class="callout-content">
+                        <p>You successfully:</p>
+                        <ul>
+                            <li>✓ Launched and configured Agentforce Vibes in your Salesforce org</li>
+                            <li>✓ Retrieved project metadata to provide context to Vibes</li>
+                            <li>✓ Generated production-ready Apex code using natural language</li>
+                            <li>✓ Deployed and tested your code directly to your org</li>
+                            <li>✓ Integrated a custom action into your Pronto agent</li>
+                            <li>✓ Verified agent behavior in preview mode</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="bonus" class="content-section">
+                <h2>Next Steps</h2>
+
+                <h3>📤 Publish Your Code to GitHub</h3>
+                <p>Want to version control your Vibes-generated code, deploy it to other orgs, or share it with your team?</p>
+
+                <div class="callout callout-info">
+                    <div class="callout-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.477 0 10c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0110 4.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C17.137 18.165 20 14.418 20 10c0-5.523-4.477-10-10-10z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="callout-content">
+                        <strong>Export and Version Control:</strong> Follow our comprehensive <a href="deploy-guide.html">Publishing from Agentforce Vibes to GitHub Guide</a> to learn how to:
+                        <ul>
+                            <li>Set up Salesforce CLI and authenticate with your org</li>
+                            <li>Retrieve code from your Salesforce org</li>
+                            <li>Create a Salesforce DX project locally</li>
+                            <li>Push your code to GitHub for version control</li>
+                            <li>Deploy to other Salesforce orgs</li>
+                        </ul>
+                        <p style="margin-top: 0.75rem;"><a href="deploy-guide.html" style="font-weight: 600;">View Complete Deployment Guide →</a></p>
+                    </div>
+                </div>
+
+                <h3>Extend Your Learning</h3>
+                <p>Try these additional challenges to deepen your Vibes expertise:</p>
+
+                <ol>
+                    <li><strong>Add Error Handling</strong> — Ask Vibes to update the action to return a friendly error message when an order isn't found</li>
+                    <li><strong>Enhance with More Fields</strong> — Add customer email and tracking number to the response</li>
+                    <li><strong>Create Related Actions</strong> — Build a "Cancel Order" or "Update Delivery Address" action</li>
+                    <li><strong>Build Lightning Components</strong> — Use Vibes to create a dashboard showing all orders</li>
+                </ol>
+
+                <h3>Continue Building</h3>
+                <p>Explore more with Agentforce Vibes:</p>
+                <ul>
+                    <li><strong>Complex Queries</strong> — Try generating Apex that joins multiple objects</li>
+                    <li><strong>Batch Processing</strong> — Ask Vibes to create batch Apex for bulk operations</li>
+                    <li><strong>Integration</strong> — Build callouts to external systems</li>
+                    <li><strong>Custom UI</strong> — Generate Lightning Web Components for custom agent interfaces</li>
+                </ul>
+            </section>
+
+            <section id="resources" class="content-section">
+                <h2>Resources</h2>
+
+                <h3>Documentation</h3>
+                <ul class="resource-list">
+                    <li><a href="https://developer.salesforce.com/docs/einstein/genai/guide/agentforce-vibes.html" target="_blank">Agentforce Vibes Documentation</a></li>
+                    <li><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_classes_annotation_InvocableMethod.htm" target="_blank">Invocable Methods in Apex</a></li>
+                    <li><a href="https://developer.salesforce.com/docs/einstein/genai/guide/agentforce-understand.html" target="_blank">Agentforce Builder Guide</a></li>
+                </ul>
+
+                <h3>Workshops & Tutorials</h3>
+                <ul class="resource-list">
+                    <li><a href="https://developer.salesforce.com/workshops/agentforce-vibes-workshop" target="_blank">Complete Agentforce Vibes Workshop</a></li>
+                    <li><a href="https://trailhead.salesforce.com/content/learn/modules/agentforce-basics" target="_blank">Agentforce Basics on Trailhead</a></li>
+                    <li><a href="https://developer.salesforce.com/workshops/agentforce-builder" target="_blank">Agentforce Builder Workshop</a></li>
+                </ul>
+
+                <h3>Community & Support</h3>
+                <ul class="resource-list">
+                    <li><a href="https://trailblazer.salesforce.com" target="_blank">Trailblazer Community</a></li>
+                    <li><a href="https://developer.salesforce.com/forums" target="_blank">Salesforce Developer Forums</a></li>
+                    <li><a href="https://github.com/salesforce" target="_blank">Salesforce GitHub</a></li>
+                </ul>
+            </section>
+
+            <footer class="page-footer">
+                <div class="footer-nav">
+                    <a href="#overview" class="footer-link">← Back to Overview</a>
+                    <a href="#step1" class="footer-link">Restart Workshop →</a>
+                </div>
+                <p>© 2026 Salesforce, Inc. All rights reserved. Created for the Agentforce Builder Workshop.</p>
+            </footer>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
