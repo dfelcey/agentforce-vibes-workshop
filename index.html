@@ -312,10 +312,10 @@
                     <p>Look for this icon in the Activity Bar on the left side of your Vibes window:</p>
 
                     <div style="display: flex; align-items: center; gap: 1.5rem; margin: 1.5rem 0; padding: 1.5rem; background: var(--gray-50); border: 2px solid var(--gray-200); border-radius: var(--radius-lg);">
-                        <img src="assets/vibes-icon.png" alt="Agentforce Vibes icon - bell/lantern shape" style="width: 80px; height: 80px; border-radius: var(--radius-md); box-shadow: var(--shadow-md);">
+                        <img src="assets/vibes-icon.png" alt="Agentforce Vibes icon" style="width: 80px; height: 80px; border-radius: var(--radius-md); box-shadow: var(--shadow-md);">
                         <div>
                             <p style="font-weight: 600; font-size: 1.125rem; margin: 0 0 0.5rem 0; color: var(--gray-900);">Click this icon to open the Agentforce chat panel</p>
-                            <p style="margin: 0; color: var(--gray-700); font-size: 0.9375rem;">The bell/lantern icon is located at the top of the Activity Bar (left sidebar). Clicking it opens the chat panel where you'll type your prompts.</p>
+                            <p style="margin: 0; color: var(--gray-700); font-size: 0.9375rem;">The Vibes icon is located at the top of the Activity Bar (left sidebar). Clicking it opens the chat panel where you'll type your prompts.</p>
                         </div>
                     </div>
 
@@ -397,132 +397,26 @@ Please create a plan first, then I'll review it before you proceed.</code></pre>
                     </div>
                 </div>
 
-                <h3>Alternative: Step-by-Step Approach</h3>
-                <p>If you prefer to work step-by-step (useful for learning), you can break this into individual prompts. Start with pulling metadata:</p>
-
-                <div class="code-example">
-                    <div class="code-header">
-                        <span class="code-label">Step 1: Pull Metadata Only</span>
-                        <button class="copy-btn">Copy</button>
-                    </div>
-                    <pre><code>Pull metadata for Order__c object and Pronto_Service_Agent</code></pre>
-                </div>
-
-                <div class="callout callout-info">
-                    <div class="callout-icon">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
-                        </svg>
-                    </div>
-                    <div class="callout-content">
-                        <strong>TIP:</strong> <code>Pronto_Service_Agent</code> is the developer name for the Pronto agent. Using the exact developer name helps Vibes identify the correct agent configuration metadata. If your Pronto agent has a different developer name, substitute it in the prompt.
-                    </div>
-                </div>
-
-                <p>Press <strong>Enter</strong> or click the <strong>Send</strong> button to submit the prompt.</p>
-
-                <h3>Choose Retrieval Option</h3>
-                <p>Vibes will ask you to choose how to retrieve the metadata. You'll see a message like:</p>
-
-                <div class="code-example">
-                    <div class="code-header">
-                        <span class="code-label">Vibes Response</span>
-                        <button class="copy-btn">Copy</button>
-                    </div>
-                    <pre><code>Choose retrieval option: run retrieve_metadata now using username &lt;your-org&gt; with no manifest (tool will auto-determine components), or should I create and use an explicit package.xml that includes Order__c and an identified Pronto agent metadata type?
-
-Reply "A" for no-manifest or "B" to provide/confirm metadata type for the agent.</code></pre>
-                </div>
-
-                <p><strong>Choose Option A</strong> by typing:</p>
-
-                <div class="code-example">
-                    <div class="code-header">
-                        <span class="code-label">Your Response</span>
-                        <button class="copy-btn">Copy</button>
-                    </div>
-                    <pre><code>A</code></pre>
-                </div>
-
-                <div class="callout callout-info">
-                    <div class="callout-icon">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
-                        </svg>
-                    </div>
-                    <div class="callout-content">
-                        <strong>Why Option A?</strong> The no-manifest option lets Vibes intelligently determine which metadata components to retrieve based on your prompt. This is faster and simpler for workshop purposes. Option B requires you to specify exact metadata type names (like <code>AiApplicationConfig</code>), which can be complex for first-time users.
-                    </div>
-                </div>
-
-                <h3>Confirm Agent Metadata Type</h3>
-                <p>After selecting Option A, Vibes may ask you to specify the exact metadata type for the Pronto agent:</p>
-
-                <div class="code-example">
-                    <div class="code-header">
-                        <span class="code-label">Vibes Follow-up Question</span>
-                        <button class="copy-btn">Copy</button>
-                    </div>
-                    <pre><code>Source-tracking is disabled for the org, so I must supply a manifest. Please confirm the exact metadata type for the "Pronto agent configuration" you want retrieved (examples: AiAgent, Agent (custom type), Agent__mdt (custom metadata), or something else).
-
-If you don't know, reply "I don't know" and I will attempt retrieving Order__c plus common Agent metadata types (AiAgent, CustomMetadata named Pronto*, and any metadata type named Agent*).
-
-Which do you prefer?</code></pre>
-                </div>
-
-                <p><strong>Respond with "I don't know"</strong> to let Vibes automatically try common agent metadata types:</p>
-
-                <div class="code-example">
-                    <div class="code-header">
-                        <span class="code-label">Your Response</span>
-                        <button class="copy-btn">Copy</button>
-                    </div>
-                    <pre><code>I don't know</code></pre>
-                </div>
-
-                <div class="callout callout-info">
-                    <div class="callout-icon">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
-                        </svg>
-                    </div>
-                    <div class="callout-content">
-                        <strong>Why "I don't know"?</strong> Agentforce agent metadata types can vary (AiAgent, AiApplicationConfig, custom metadata, etc.). By responding "I don't know", Vibes will automatically attempt to retrieve Order__c plus common agent types (AiAgent, Pronto* custom metadata, and Agent* metadata types). This is the safest approach when you're not certain of the exact metadata type name.
-                    </div>
-                </div>
-
-                <h3>Wait for Retrieval</h3>
-                <p>Vibes will now retrieve:</p>
-                <ul>
-                    <li>The <code>Order__c</code> custom object definition and fields</li>
-                    <li>Your Pronto agent configuration</li>
-                    <li>Related permission sets and profiles</li>
-                    <li>Existing Apex classes and Lightning Web Components</li>
-                </ul>
-
-                <div class="callout callout-info">
-                    <div class="callout-icon">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
-                        </svg>
-                    </div>
-                    <div class="callout-content">
-                        <strong>TIP:</strong> By pulling metadata first, Vibes understands your org's schema, naming conventions, and existing patterns. This ensures generated code follows your org's standards and integrates seamlessly.
-                    </div>
-                </div>
-
-                <h3>Explore the Agentforce Vibes Sidebar</h3>
-                <p>The Agentforce Vibes sidebar contains important controls and settings. Let's familiarize yourself with the key features.</p>
+                <h3>Use the Plan Feature</h3>
+                <p>Now that you've pasted the complete plan, use Vibes' Plan feature to organize the work:</p>
 
                 <ol class="step-list">
-                    <li>Look for the <strong>Agentforce Vibes Sidebar</strong> (typically on the left side of the Vibes interface)</li>
-                    <li>You'll see several important sections:
+                    <li><strong>Click the "Plan" button</strong> in the chat interface (or press the keyboard shortcut if available)</li>
+                    <li><strong>Wait for Vibes to analyze your plan</strong> — Vibes will break down the steps, identify dependencies, and create a structured execution plan</li>
+                    <li><strong>Review the plan</strong> that Vibes creates:
                         <ul>
-                            <li><strong>MCP Servers</strong> — Shows connected servers and their status</li>
-                            <li><strong>Auto-approve</strong> — Controls whether Vibes automatically executes actions or asks for confirmation</li>
-                            <li><strong>Context Settings</strong> — Adjusts how much context Vibes uses</li>
-                            <li><strong>Skills Tab</strong> — Shows built-in instruction sets (like Salesforce Skills) that guide Vibes behavior</li>
-                            <li><strong>Rules Tab</strong> — Contains persistent guidance rules (including default expert rules)</li>
+                            <li>Check that Vibes understood all requirements</li>
+                            <li>Verify the order of operations makes sense</li>
+                            <li>Confirm the Apex class specifications match your needs</li>
+                        </ul>
+                    </li>
+                    <li><strong>Click the "Act" button</strong> to execute the plan — Vibes will now:
+                        <ul>
+                            <li>Pull metadata from your org (Order__c and Pronto_Service_Agent)</li>
+                            <li>Generate the OrderStatusAction Apex class and test</li>
+                            <li>Deploy OrderStatusAction to your org</li>
+                            <li>Generate the LoyaltyPointsAction Apex class and test</li>
+                            <li>Deploy LoyaltyPointsAction to your org</li>
                         </ul>
                     </li>
                 </ol>
@@ -534,114 +428,9 @@ Which do you prefer?</code></pre>
                         </svg>
                     </div>
                     <div class="callout-content">
-                        <strong>TIP:</strong> The Skills tab contains modular instruction sets that help Vibes understand Salesforce-specific patterns. The Rules tab includes an <code>a4v-expert-global-rule.md</code> file with best practices for Salesforce development.
+                        <strong>Why use Plan → Act?</strong> The Plan feature lets you review Vibes' approach before execution. This gives you a chance to catch misunderstandings, adjust requirements, or verify the architecture before any code is deployed to your org.
                     </div>
                 </div>
-
-                <h3>Review Auto-Approve Settings</h3>
-                <p>Control how Vibes executes actions in your org.</p>
-
-                <ol class="step-list">
-                    <li>In the Agentforce Vibes Sidebar, find the <strong>Auto-approve</strong> section</li>
-                    <li>Review the current settings:
-                        <ul>
-                            <li><strong>Auto-approve enabled</strong> — Vibes executes commands automatically without asking</li>
-                            <li><strong>Auto-approve disabled</strong> — Vibes asks for confirmation before executing (safer for learning)</li>
-                        </ul>
-                    </li>
-                    <li><strong>For this workshop, we recommend keeping auto-approve disabled</strong> so you can review each action before it runs</li>
-                </ol>
-
-                <div class="callout callout-warning">
-                    <div class="callout-icon">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
-                        </svg>
-                    </div>
-                    <div class="callout-content">
-                        <strong>Important:</strong> When auto-approve is enabled, Vibes can deploy code, modify metadata, and run commands without confirmation. For learning and safety, disable auto-approve until you're comfortable with how Vibes works.
-                    </div>
-                </div>
-
-                <h3>Verify MCP Server Activation in Vibes</h3>
-                <p>Double-check that your MCP servers are properly activated within the Vibes interface.</p>
-
-                <ol class="step-list">
-                    <li>In the Vibes Sidebar, locate the <strong>MCP Servers</strong> section</li>
-                    <li>You should see the three Salesforce MCP servers listed:
-                        <ul>
-                            <li>sobject-all</li>
-                            <li>salesforce-api-context</li>
-                            <li>(Possibly a third Salesforce-related server)</li>
-                        </ul>
-                    </li>
-                    <li>Verify each server shows as <strong>Active</strong> or has a green indicator</li>
-                    <li>Click the <strong>configuration icon</strong> (⚙️ or settings) next to each server to view available tools</li>
-                    <li>You should see tools like:
-                        <ul>
-                            <li><code>sf project deploy</code></li>
-                            <li><code>sf project retrieve</code></li>
-                            <li><code>sf org display</code></li>
-                            <li>Other Salesforce DX commands</li>
-                        </ul>
-                    </li>
-                </ol>
-
-                <div class="callout callout-info">
-                    <div class="callout-icon">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
-                        </svg>
-                    </div>
-                    <div class="callout-content">
-                        <strong>TIP:</strong> Viewing the tools list shows you what Salesforce DX commands Vibes can execute. These are the same commands you'd run in a terminal, but Vibes can use them autonomously based on your prompts.
-                    </div>
-                </div>
-
-                <h3>Enable Local Development (Optional)</h3>
-                <p>This feature allows you to preview Lightning components locally. While optional for this workshop, it's useful for advanced development.</p>
-
-                <ol class="step-list">
-                    <li>At the bottom of the Vibes window, find the <strong>status bar</strong></li>
-                    <li>Look for an <strong>"Open Default Org in Browser"</strong> button or your org name</li>
-                    <li>Click it to open your Salesforce org in a browser</li>
-                    <li>In your org, navigate to <strong>Setup</strong></li>
-                    <li>Search for <strong>"Local Dev"</strong> in Quick Find</li>
-                    <li>Click <strong>Local Development Setup</strong></li>
-                    <li>Enable <strong>Local Development</strong></li>
-                    <li>Click <strong>Save</strong></li>
-                </ol>
-
-                <div class="callout callout-info">
-                    <div class="callout-icon">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
-                        </svg>
-                    </div>
-                    <div class="callout-content">
-                        <strong>Note:</strong> Local Development is not required for building Apex actions in this workshop. It's primarily used for developing and previewing Lightning Web Components locally. You can skip this step if you're only focusing on Apex development.
-                    </div>
-                </div>
-
-                <h3>Verify Metadata Retrieval</h3>
-                <p>After the pull completes, check your Explorer panel to confirm Vibes successfully retrieved your org's metadata:</p>
-                <ul>
-                    <li>In the <strong>Explorer sidebar</strong> (left side), expand <code>force-app/main/default/</code></li>
-                    <li>Navigate to <code>objects/Order__c/</code> and verify you see:
-                        <ul>
-                            <li><code>Order__c.object-meta.xml</code> (object definition)</li>
-                            <li><code>fields/</code> folder with field definitions</li>
-                            <li>Field files like <code>Order_Number__c.field-meta.xml</code>, <code>Status__c.field-meta.xml</code>, etc.</li>
-                        </ul>
-                    </li>
-                    <li>Check for agent configurations under <code>aiApplicationConfigs/</code> (if available)</li>
-                    <li>Verify you see the Salesforce DX project structure:
-                        <ul>
-                            <li><code>sfdx-project.json</code> in the root</li>
-                            <li><code>force-app/main/default/</code> directory structure</li>
-                        </ul>
-                    </li>
-                </ul>
 
                 <div class="callout callout-success">
                     <div class="callout-icon">
@@ -650,17 +439,15 @@ Which do you prefer?</code></pre>
                         </svg>
                     </div>
                     <div class="callout-content">
-                        <strong>Configuration Complete!</strong> Your Agentforce Vibes environment is now fully configured and ready for development. You have:
+                        <strong>Plan Execution Complete!</strong> Vibes has now:
                         <ul style="margin-top: 0.5rem; margin-bottom: 0;">
-                            <li>✓ MCP Service enabled in your org</li>
-                            <li>✓ MCP servers activated and connected</li>
-                            <li>✓ Project metadata retrieved from your org</li>
-                            <li>✓ Vibes understands your Order__c object and Pronto agent</li>
+                            <li>✓ Retrieved metadata from your org</li>
+                            <li>✓ Generated both Apex classes with test coverage</li>
+                            <li>✓ Deployed the code to your Salesforce org</li>
+                            <li>✓ Verified successful deployment</li>
                         </ul>
                     </div>
                 </div>
-
-                <p>You're now ready to start building Apex actions with natural language!</p>
             </section>
 
             <section id="step3" class="content-section">
