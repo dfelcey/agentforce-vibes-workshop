@@ -222,10 +222,62 @@
                     <h2>Configure Your Salesforce Project</h2>
                 </div>
 
-                <h3>Pull Project Metadata</h3>
-                <p>Before building, Vibes needs context about your org's metadata. Let's retrieve the relevant objects and configurations for your Pronto agent.</p>
+                <h3>Open the Agentforce Chat Panel</h3>
+                <p>Before building, Vibes needs context about your org's metadata. First, let's open the AI chat interface.</p>
 
-                <p>In the Agentforce Vibes chat, type:</p>
+                <div class="ui-diagram">
+                    <div class="ui-diagram-title">📍 Where to Find the Agentforce Chat</div>
+                    <div class="ui-mockup">
+                        <div class="ui-mockup-header">Agentforce Vibes</div>
+
+                        <!-- Sidebar with Activity Bar -->
+                        <div class="ui-mockup-sidebar">
+                            <div class="ui-mockup-icon">📁</div>
+                            <div class="ui-mockup-icon">🔍</div>
+                            <div class="ui-mockup-icon" style="background: #ef4444;">💬</div>
+                        </div>
+
+                        <!-- Chat Panel on Right -->
+                        <div class="ui-mockup-chat">
+                            <div class="ui-mockup-chat-header">Agentforce</div>
+                            <div style="color: var(--gray-500); font-size: 0.75rem; margin-top: 1rem;">
+                                Ask me anything about your Salesforce org...
+                            </div>
+                            <div class="ui-mockup-chat-input">
+                                Type your prompt here...
+                            </div>
+                            <!-- Red highlight box around input -->
+                            <div class="ui-highlight" style="bottom: 0.5rem; left: 0.5rem; right: 0.5rem; height: 36px;"></div>
+                        </div>
+
+                        <!-- Labels -->
+                        <div class="ui-label label-right" style="left: 60px; top: 8rem;">
+                            1. Click chat icon
+                        </div>
+                        <div class="ui-label label-top" style="right: 140px; bottom: 0.5rem;">
+                            2. Type prompt here
+                        </div>
+
+                        <!-- Red highlight box around chat icon -->
+                        <div class="ui-highlight" style="left: 1.5rem; top: 8.5rem; width: 32px; height: 32px;"></div>
+                    </div>
+                </div>
+
+                <div class="callout callout-info">
+                    <div class="callout-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="callout-content">
+                        <strong>TIP:</strong> The chat icon (💬) is typically in the Activity Bar on the left side, or the chat panel may already be open on the right. If you don't see it, look for an "Agentforce" or "Chat" button in the top-right corner.
+                    </div>
+                </div>
+
+                <h3>Pull Project Metadata</h3>
+                <p>Now that the chat panel is open, let's retrieve the relevant objects and configurations for your Pronto agent.</p>
+
+                <p><strong>In the Agentforce chat input box at the bottom of the chat panel</strong>, type this prompt:</p>
 
                 <div class="code-example">
                     <div class="code-header">
@@ -234,6 +286,8 @@
                     </div>
                     <pre><code>Pull metadata for Order__c object and Pronto agent configuration</code></pre>
                 </div>
+
+                <p>Press <strong>Enter</strong> or click the <strong>Send</strong> button to submit the prompt.</p>
 
                 <p>Vibes will retrieve:</p>
                 <ul>
