@@ -56,12 +56,11 @@
                     </ul>
                 </div>
                 <div class="nav-group">
-                    <div class="nav-group-title">Configure Agent Actions</div>
+                    <div class="nav-group-title">Build Loyalty Subagent</div>
                     <ul class="nav-list">
-                        <li><a href="#step3" class="nav-item">3. Add Order Status Action</a></li>
-                        <li><a href="#step4" class="nav-item">4. Create Loyalty Subagent</a></li>
-                        <li><a href="#step5" class="nav-item">5. Add Loyalty Points Action</a></li>
-                        <li><a href="#step6" class="nav-item">6. Test the Subagent</a></li>
+                        <li><a href="#step3" class="nav-item">3. Create Loyalty Subagent</a></li>
+                        <li><a href="#step4" class="nav-item">4. Add Loyalty Points Action</a></li>
+                        <li><a href="#step5" class="nav-item">5. Test the Subagent</a></li>
                     </ul>
                 </div>
                 <div class="nav-group">
@@ -103,10 +102,10 @@
                 </ul>
 
                 <h3>What You'll Build</h3>
-                <p>Two complete features for your Pronto agent:</p>
+                <p>A complete Loyalty feature for your Pronto agent:</p>
                 <ul>
-                    <li><strong>Order Status Action</strong> — Look up order information and delivery dates</li>
                     <li><strong>Loyalty Subagent</strong> — A dedicated subagent with a custom action to retrieve customer loyalty points</li>
+                    <li><strong>LoyaltyPointsAction</strong> — An Apex class that simulates looking up customer loyalty points</li>
                 </ul>
 
                 <div class="info-grid">
@@ -134,7 +133,6 @@
                 <ul>
                     <li><strong>Salesforce Org Access</strong> — A Salesforce org with Agentforce enabled</li>
                     <li><strong>Pronto Agent</strong> — A configured Pronto agent (complete the core Agentforce Builder Workshop first)</li>
-                    <li><strong>Order Object</strong> — The <code>Order__c</code> custom object with fields: <code>Order_Number__c</code>, <code>Status__c</code>, and <code>Estimated_Delivery_Date__c</code> (used in Steps 3-4)</li>
                     <li><strong>System Permissions</strong> — Ability to create and deploy Apex classes, create subagents, and modify Agentforce agents</li>
                 </ul>
 
@@ -145,7 +143,7 @@
                         </svg>
                     </div>
                     <div class="callout-content">
-                        <strong>Note:</strong> The Order__c object is only needed for the Order Status action (Steps 3-4). The Loyalty subagent (Steps 5-7) doesn't require any custom objects — it uses a simulated points lookup for workshop simplicity.
+                        <strong>Note:</strong> This workshop doesn't require any custom objects. The Loyalty subagent uses a simulated points lookup for simplicity, so you can focus on learning Vibes and subagent creation.
                     </div>
                 </div>
             </section>
@@ -263,7 +261,7 @@
                         </svg>
                     </div>
                     <div class="callout-content">
-                        <strong>TIP:</strong> Both servers are required for complete functionality. The sobject-all server lets Vibes understand your custom objects like Order__c, while salesforce-api-context provides general Salesforce metadata access.
+                        <strong>TIP:</strong> Both servers are required for complete functionality. The sobject-all server lets Vibes understand your Salesforce objects, while salesforce-api-context provides general Salesforce metadata access.
                     </div>
                 </div>
 
@@ -340,40 +338,27 @@
                         <span class="code-label">Complete Workshop Plan</span>
                         <button class="copy-btn">Copy</button>
                     </div>
-                    <pre><code>I need to extend my Pronto agent with custom Apex actions and a new Loyalty subagent. Please create a plan for:
+                    <pre><code>I need to create a Loyalty subagent for my Pronto agent with a custom Apex action. Please create a plan for:
 
 1. Pull metadata from my org:
-   - Order__c custom object (with Order_Number__c, Status__c, Estimated_Delivery_Date__c fields)
    - Pronto_Service_Agent configuration
 
-2. Create OrderStatusAction Apex class:
-   - Invocable from Agentforce (@InvocableMethod)
-   - Input: order number (String)
-   - Query Order__c using Order_Number__c field
-   - Return: order status (Status__c) and estimated delivery date (Estimated_Delivery_Date__c) as Strings
-   - Include error handling for orders not found
-   - Create test class with 100% coverage
-   - Label the invocable method as "Get Order Status"
-
-3. Deploy OrderStatusAction to my org with test execution
-
-4. Create LoyaltyPointsAction Apex class:
+2. Create LoyaltyPointsAction Apex class:
    - Invocable from Agentforce (@InvocableMethod)
    - Input: customer email (String)
    - Return: random number of loyalty points between 100 and 10000 (Integer)
    - Label the invocable method as "Get Loyalty Points"
    - Create test class with 100% coverage
 
-5. Deploy LoyaltyPointsAction to my org with test execution
+3. Deploy LoyaltyPointsAction to my org with test execution
 
 After successful deployment, I'll manually:
-- Add "Get Order Status" action to the main Pronto agent
 - Create a Loyalty subagent in Agent Builder with:
   * Name: Loyalty
   * Description: "Specializes in customer loyalty program inquiries, including points balance lookups, rewards information, and program benefits. Routes queries about loyalty points, rewards redemption, and membership tiers."
   * Instructions: "You help customers with loyalty program questions. When a customer asks about their loyalty points balance, use the Get Loyalty Points action. Ask for their email address if they haven't provided it. Program details: Customers earn 1 point per dollar spent, 100 points = $1 off future orders. Be friendly and enthusiastic about helping customers with their rewards."
 - Add "Get Loyalty Points" action to the Loyalty subagent
-- Test routing between main agent and Loyalty subagent
+- Test the Loyalty subagent routing and action execution
 
 Please create a plan first, then I'll review it before you proceed.</code></pre>
                 </div>
@@ -410,11 +395,9 @@ Please create a plan first, then I'll review it before you proceed.</code></pre>
                     </li>
                     <li><strong>Click the "Act" button</strong> to execute the plan — Vibes will now:
                         <ul>
-                            <li>Pull metadata from your org (Order__c and Pronto_Service_Agent)</li>
-                            <li>Generate the OrderStatusAction Apex class and test</li>
-                            <li>Deploy OrderStatusAction to your org</li>
+                            <li>Pull Pronto agent metadata from your org</li>
                             <li>Generate the LoyaltyPointsAction Apex class and test</li>
-                            <li>Deploy LoyaltyPointsAction to your org</li>
+                            <li>Deploy LoyaltyPointsAction to your org with test execution</li>
                         </ul>
                     </li>
                 </ol>
@@ -439,12 +422,12 @@ Please create a plan first, then I'll review it before you proceed.</code></pre>
                     <div class="callout-content">
                         <strong>Plan Execution Complete!</strong> Vibes has now:
                         <ul style="margin-top: 0.5rem; margin-bottom: 0;">
-                            <li>✓ Retrieved metadata from your org</li>
-                            <li>✓ Generated OrderStatusAction and LoyaltyPointsAction with test coverage</li>
-                            <li>✓ Deployed both Apex classes to your Salesforce org</li>
+                            <li>✓ Retrieved Pronto agent metadata from your org</li>
+                            <li>✓ Generated LoyaltyPointsAction Apex class with test coverage</li>
+                            <li>✓ Deployed the Apex class to your Salesforce org</li>
                             <li>✓ Verified successful deployment and test execution</li>
                         </ul>
-                        <p style="margin-top: 0.75rem; margin-bottom: 0;">You're now ready to configure the actions in Agent Builder!</p>
+                        <p style="margin-top: 0.75rem; margin-bottom: 0;">You're now ready to create the Loyalty subagent in Agent Builder!</p>
                     </div>
                 </div>
             </section>
@@ -452,45 +435,6 @@ Please create a plan first, then I'll review it before you proceed.</code></pre>
             <section id="step3" class="content-section">
                 <div class="step-header">
                     <span class="step-number">3</span>
-                    <h2>Add Order Status Action to Pronto</h2>
-                </div>
-
-                <h3>Configure the Action in Agent Builder</h3>
-                <p>Now that the OrderStatusAction Apex class is deployed, add it to your Pronto agent.</p>
-
-                <ol class="step-list">
-                    <li>Navigate to <strong>Setup</strong> in your Salesforce org</li>
-                    <li>Search for <strong>Agentforce Agents</strong> in Quick Find</li>
-                    <li>Click on your <strong>Pronto Agent</strong> to open it</li>
-                    <li>Click the <strong>Actions</strong> tab</li>
-                    <li>Click <strong>New Action</strong></li>
-                    <li>Select <strong>Apex</strong> as the action type</li>
-                    <li>Search for and select <strong>OrderStatusAction</strong></li>
-                    <li>Verify the action configuration:
-                        <ul>
-                            <li><strong>Action Label:</strong> Get Order Status</li>
-                            <li><strong>Input:</strong> Order Number (String)</li>
-                            <li><strong>Outputs:</strong> Order Status (String), Estimated Delivery Date (String)</li>
-                        </ul>
-                    </li>
-                    <li>Click <strong>Finish</strong> or <strong>Save</strong></li>
-                </ol>
-
-                <div class="callout callout-info">
-                    <div class="callout-icon">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
-                        </svg>
-                    </div>
-                    <div class="callout-content">
-                        <strong>TIP:</strong> The action label "Get Order Status" is what the agent will see when deciding which action to use. The <code>@InvocableMethod</code> label in your Apex class determines this display name.
-                    </div>
-                </div>
-            </section>
-
-            <section id="step4" class="content-section">
-                <div class="step-header">
-                    <span class="step-number">4</span>
                     <h2>Create a Loyalty Subagent</h2>
                 </div>
 
@@ -574,9 +518,9 @@ Be friendly and enthusiastic about helping customers with their rewards.</code><
                 </div>
             </section>
 
-            <section id="step5" class="content-section">
+            <section id="step4" class="content-section">
                 <div class="step-header">
-                    <span class="step-number">5</span>
+                    <span class="step-number">4</span>
                     <h2>Add Loyalty Points Action</h2>
                 </div>
 
@@ -613,9 +557,9 @@ Be friendly and enthusiastic about helping customers with their rewards.</code><
                 </div>
             </section>
 
-            <section id="step6" class="content-section">
+            <section id="step5" class="content-section">
                 <div class="step-header">
-                    <span class="step-number">6</span>
+                    <span class="step-number">5</span>
                     <h2>Test the Loyalty Subagent</h2>
                 </div>
 
