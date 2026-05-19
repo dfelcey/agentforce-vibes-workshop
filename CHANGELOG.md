@@ -1,5 +1,36 @@
 # Workshop Site Updates
 
+## Enhanced Loyalty Subagent Configuration (2026-05-19)
+
+### Improved Subagent Description
+- ✅ Added comprehensive description for the Loyalty subagent
+- ✅ Includes routing keywords: loyalty, points, rewards, membership, tiers
+- ✅ Explains the subagent's purpose and scope clearly
+- ✅ Added TIP callout about why descriptions matter for routing
+
+### Detailed Subagent Instructions
+- ✅ Complete structured instructions with sections:
+  - **Your Role**: What the subagent does
+  - **When to Use Actions**: Clear guidance on calling "Get Loyalty Points"
+  - **Response Guidelines**: 4 specific behavior rules
+  - **What NOT to Do**: Boundaries and routing back to main agent
+- ✅ Includes program details: 1 point per dollar, 100 points = $1 off
+- ✅ Emphasizes asking for email if not provided
+- ✅ Warns against making up data (must use action)
+- ✅ Provides conversation flow guidance (always end with question)
+
+### Configuration Flow Improvements
+- ✅ Added step to open the newly created subagent
+- ✅ Changed TIP callout to WARNING callout emphasizing importance
+- ✅ Explains how instructions impact routing decisions
+
+### Why This Matters
+Good instructions ensure:
+- Accurate routing from main agent to subagent
+- Proper action usage (not making up data)
+- Consistent customer experience
+- Clear boundaries (what to handle vs. route elsewhere)
+
 ## Improved Vibes Workflow (2026-05-19)
 
 ### Added Plan-First Approach

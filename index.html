@@ -432,30 +432,10 @@ Update the method description to be more specific</code></pre>
                         <ul>
                             <li><strong>Name:</strong> Loyalty</li>
                             <li><strong>API Name:</strong> Loyalty</li>
-                            <li><strong>Description:</strong> Handles customer loyalty program inquiries</li>
+                            <li><strong>Description:</strong> Specializes in customer loyalty program inquiries, including points balance lookups, rewards information, and program benefits. Routes queries about loyalty points, rewards redemption, and membership tiers.</li>
                         </ul>
                     </li>
-                </ol>
-
-                <h3>Add Subagent Instructions</h3>
-                <p>Define when the Loyalty subagent should be activated and how it should behave:</p>
-
-                <div class="code-example">
-                    <div class="code-header">
-                        <span class="code-label">Subagent Instructions</span>
-                        <button class="copy-btn">Copy</button>
-                    </div>
-                    <pre><code>You are a loyalty program specialist for customers. When customers ask about loyalty points, rewards, or membership benefits, help them by:
-- Retrieving their current loyalty points balance
-- Explaining the rewards program
-- Answering questions about how to earn points
-
-Always be friendly and enthusiastic about helping customers maximize their rewards.</code></pre>
-                </div>
-
-                <ol class="step-list">
-                    <li>Paste the instructions into the <strong>Instructions</strong> field</li>
-                    <li>Click <strong>Save</strong></li>
+                    <li>Click <strong>Finish</strong> or <strong>Save</strong> to create the subagent</li>
                 </ol>
 
                 <div class="callout callout-info">
@@ -465,7 +445,57 @@ Always be friendly and enthusiastic about helping customers maximize their rewar
                         </svg>
                     </div>
                     <div class="callout-content">
-                        <strong>TIP:</strong> The Pronto agent will automatically route customer queries about loyalty points to this subagent based on the instructions you provide.
+                        <strong>TIP:</strong> The description helps the main Pronto agent understand when to route queries to this subagent. Include keywords that customers might use (loyalty, points, rewards, membership).
+                    </div>
+                </div>
+
+                <h3>Add Subagent Instructions</h3>
+                <p>Instructions define how the Loyalty subagent should behave and when to use its actions. Clear instructions ensure accurate routing and helpful responses.</p>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">Subagent Instructions</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <pre><code>You are the Loyalty Program specialist helping customers with their rewards and points.
+
+## Your Role
+Help customers understand and maximize their loyalty benefits by providing accurate points information and program guidance.
+
+## When to Use Actions
+- Use the "Get Loyalty Points" action when a customer asks about their current points balance
+- Always ask for the customer's email address if they haven't provided it
+- After retrieving points, explain what they can do with their rewards
+
+## Response Guidelines
+1. Be enthusiastic and friendly about helping customers with rewards
+2. When showing points balance, mention it's their current total
+3. If asked about earning points, explain: "You earn 1 point per dollar spent"
+4. If asked about redeeming points, explain: "You can redeem points for discounts on future orders - 100 points = $1 off"
+
+## What NOT to Do
+- Don't try to handle order status questions (route to main agent)
+- Don't make up points balances - always use the Get Loyalty Points action
+- Don't promise specific rewards without confirming availability
+
+Always end by asking if they have other questions about the loyalty program.</code></pre>
+                </div>
+
+                <ol class="step-list">
+                    <li>Open your newly created <strong>Loyalty</strong> subagent</li>
+                    <li>Find the <strong>Instructions</strong> field</li>
+                    <li>Paste the instructions above into the field</li>
+                    <li>Click <strong>Save</strong></li>
+                </ol>
+
+                <div class="callout callout-warning">
+                    <div class="callout-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="callout-content">
+                        <strong>Important:</strong> Well-written instructions are crucial for subagent routing. The main Pronto agent uses the description and instructions to decide when to activate this subagent. Clear guidelines about when to use actions (like "Get Loyalty Points") ensure the subagent behaves correctly.
                     </div>
                 </div>
             </section>
