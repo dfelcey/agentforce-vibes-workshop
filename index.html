@@ -398,6 +398,42 @@ Reply "A" for no-manifest or "B" to provide/confirm metadata type for the agent.
                     </div>
                 </div>
 
+                <h3>Confirm Agent Metadata Type</h3>
+                <p>After selecting Option A, Vibes may ask you to specify the exact metadata type for the Pronto agent:</p>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">Vibes Follow-up Question</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <pre><code>Source-tracking is disabled for the org, so I must supply a manifest. Please confirm the exact metadata type for the "Pronto agent configuration" you want retrieved (examples: AiAgent, Agent (custom type), Agent__mdt (custom metadata), or something else).
+
+If you don't know, reply "I don't know" and I will attempt retrieving Order__c plus common Agent metadata types (AiAgent, CustomMetadata named Pronto*, and any metadata type named Agent*).
+
+Which do you prefer?</code></pre>
+                </div>
+
+                <p><strong>Respond with "I don't know"</strong> to let Vibes automatically try common agent metadata types:</p>
+
+                <div class="code-example">
+                    <div class="code-header">
+                        <span class="code-label">Your Response</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <pre><code>I don't know</code></pre>
+                </div>
+
+                <div class="callout callout-info">
+                    <div class="callout-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="callout-content">
+                        <strong>Why "I don't know"?</strong> Agentforce agent metadata types can vary (AiAgent, AiApplicationConfig, custom metadata, etc.). By responding "I don't know", Vibes will automatically attempt to retrieve Order__c plus common agent types (AiAgent, Pronto* custom metadata, and Agent* metadata types). This is the safest approach when you're not certain of the exact metadata type name.
+                    </div>
+                </div>
+
                 <h3>Wait for Retrieval</h3>
                 <p>Vibes will now retrieve:</p>
                 <ul>

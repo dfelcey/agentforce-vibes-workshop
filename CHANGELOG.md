@@ -1,5 +1,39 @@
 # Workshop Site Updates
 
+## Added Agent Metadata Type Confirmation Step (2026-05-19)
+
+### New Prompt Handling: "I don't know"
+After choosing Option A, Vibes asks users to confirm the agent metadata type:
+
+**New Section Added:**
+- ✅ "Confirm Agent Metadata Type" subsection
+- ✅ Shows exact Vibes follow-up question
+- ✅ Clear instruction: Respond with "I don't know"
+- ✅ Explains WHY: Vibes will try common agent types automatically
+- ✅ Lists what Vibes will retrieve: Order__c + AiAgent + Pronto* + Agent*
+
+**Why This Matters:**
+- Users were getting stuck at this prompt
+- Agent metadata types vary (AiAgent, AiApplicationConfig, custom metadata)
+- "I don't know" is safest - lets Vibes try multiple common types
+- Prevents errors from guessing wrong metadata type name
+
+## Added Annotated Screenshot (2026-05-19)
+
+### Real Vibes Interface Screenshot
+- ✅ Added assets/vibes-chat-interface.png (726KB)
+- ✅ Shows complete Agentforce Vibes interface
+- ✅ Red box annotations highlight:
+  1. Agentforce Vibes icon (cloud with sparkles)
+  2. Chat panel with input box
+- ✅ CSS overlay labels with positioning
+- ✅ Step-by-step usage instructions in callout
+
+**Replaced:**
+- "Screenshot Coming Soon" placeholder
+- Generic sidebar references
+- Vague "look for icons" instructions
+
 ## Completed Step 2 with All Official Workshop Steps (2026-05-19)
 
 ### Added ALL Configuration Steps from Official Workshop
