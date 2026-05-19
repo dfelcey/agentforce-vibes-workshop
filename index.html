@@ -132,7 +132,68 @@
                 <ul>
                     <li><strong>Salesforce Org Access</strong> — A Salesforce org with Agentforce enabled</li>
                     <li><strong>Pronto Agent</strong> — A configured Pronto agent (complete the core Agentforce Builder Workshop first)</li>
+                    <li><strong>MCP Servers Enabled</strong> — Salesforce-hosted MCP servers must be activated in your org (see setup guide below)</li>
                     <li><strong>System Permissions</strong> — Ability to create and deploy Apex classes, create subagents, and modify Agentforce agents</li>
+                </ul>
+
+                <h3>🔧 Setup Required: Enable Salesforce-Hosted MCP Servers</h3>
+                <p>Before starting this workshop, you must enable the Salesforce-hosted MCP (Model Context Protocol) servers in your org. These servers allow Vibes to communicate with your Salesforce org.</p>
+
+                <div class="callout callout-warning">
+                    <div class="callout-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="callout-content">
+                        <strong>Required Setup:</strong> If you skip this step, Vibes will not be able to retrieve metadata or deploy to your org. Complete this setup before launching Vibes.
+                    </div>
+                </div>
+
+                <h4>Step 1: Enable MCP Service</h4>
+                <ol class="step-list">
+                    <li>Log in to your Salesforce org</li>
+                    <li>Navigate to <strong>Setup</strong></li>
+                    <li>In Quick Find, search for <strong>"User Interface"</strong></li>
+                    <li>Click <strong>User Interface</strong></li>
+                    <li>Scroll down and enable <strong>"Enable MCP Service (Beta)"</strong></li>
+                    <li>Click <strong>Save</strong></li>
+                </ol>
+
+                <h4>Step 2: Activate Salesforce-Hosted MCP Servers</h4>
+                <p>Salesforce provides pre-configured MCP servers that give Vibes access to your org's metadata and APIs.</p>
+
+                <ol class="step-list">
+                    <li>In Setup, search for <strong>"MCP Servers"</strong> in Quick Find</li>
+                    <li>Click <strong>MCP Servers</strong></li>
+                    <li>Go to the <strong>Salesforce Servers</strong> tab</li>
+                    <li>Activate the following servers by toggling them on:
+                        <ul>
+                            <li><strong>sobject-all</strong> — Provides access to all standard and custom objects in your org</li>
+                            <li><strong>salesforce-api-context</strong> — Provides Salesforce API access and metadata context</li>
+                        </ul>
+                    </li>
+                    <li>Verify both servers show as <strong>"Active"</strong></li>
+                </ol>
+
+                <div class="callout callout-info">
+                    <div class="callout-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="callout-content">
+                        <strong>What are MCP Servers?</strong> MCP (Model Context Protocol) servers are connection points that expose specific capabilities to AI tools. Salesforce-hosted servers run in your org and allow Vibes to read metadata, execute Salesforce DX commands, and deploy code securely. Learn more in the <a href="https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_mcp_server_eca.htm" target="_blank">MCP Server documentation</a>.
+                    </div>
+                </div>
+
+                <h4>Step 3: Verify Server Configuration</h4>
+                <p>After activating the servers, verify they're properly configured:</p>
+                <ul>
+                    <li>In the <strong>MCP Servers</strong> page, both servers should show a green "Active" status</li>
+                    <li>You can click on each server to view its available tools and capabilities</li>
+                    <li>The <strong>sobject-all</strong> server should list tools for querying and describing objects</li>
+                    <li>The <strong>salesforce-api-context</strong> server should show Salesforce DX CLI tools</li>
                 </ul>
 
                 <div class="callout callout-info">
@@ -213,54 +274,21 @@
                     <h2>Configure Your Salesforce Project</h2>
                 </div>
 
-                <p>Before building with Vibes, you need to enable key features in your Salesforce org and configure your development environment. This ensures Vibes can communicate with your org and access the right metadata.</p>
+                <p>Now that you've enabled MCP servers in your org (from Prerequisites), let's configure them within the Agentforce Vibes interface and prepare to build your Loyalty subagent.</p>
 
-                <h3>Enable MCP Service (Beta)</h3>
-                <p>MCP (Model Context Protocol) allows Vibes to connect to your Salesforce org using a standardized AI protocol.</p>
-
-                <ol class="step-list">
-                    <li>In your Salesforce org, navigate to <strong>Setup</strong></li>
-                    <li>In the Quick Find box, search for <strong>"User Interface"</strong></li>
-                    <li>Click <strong>User Interface</strong> in the results</li>
-                    <li>Scroll down and check the box for <strong>"Enable MCP Service (Beta)"</strong></li>
-                    <li>Click <strong>Save</strong></li>
-                </ol>
-
-                <div class="callout callout-info">
+                <div class="callout callout-success">
                     <div class="callout-icon">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
                         </svg>
                     </div>
                     <div class="callout-content">
-                        <strong>What is MCP?</strong> Model Context Protocol (MCP) is an open standard that allows AI tools like Vibes to securely communicate with your Salesforce org, read metadata, and execute commands. Enabling this service allows Vibes to understand your org's structure.
-                    </div>
-                </div>
-
-                <h3>Activate Salesforce MCP Servers</h3>
-                <p>MCP Servers provide specific capabilities to Vibes, like reading objects or accessing Salesforce APIs.</p>
-
-                <ol class="step-list">
-                    <li>In Setup, search for <strong>"MCP Servers"</strong> in Quick Find</li>
-                    <li>Click <strong>MCP Servers</strong></li>
-                    <li>Under the <strong>Salesforce Servers</strong> tab, you'll see available servers</li>
-                    <li>Activate these two servers by clicking the toggle or checkbox:
-                        <ul>
-                            <li><strong>sobject-all</strong> — Provides access to all standard and custom objects</li>
-                            <li><strong>salesforce-api-context</strong> — Provides Salesforce API context and metadata</li>
+                        <strong>Prerequisites Complete?</strong> Before continuing, verify you've:
+                        <ul style="margin-top: 0.5rem; margin-bottom: 0;">
+                            <li>✓ Enabled MCP Service in Setup → User Interface</li>
+                            <li>✓ Activated sobject-all and salesforce-api-context servers</li>
+                            <li>✓ Both servers show as "Active" in Setup → MCP Servers</li>
                         </ul>
-                    </li>
-                    <li>Verify both servers show as "Active" or "Enabled"</li>
-                </ol>
-
-                <div class="callout callout-info">
-                    <div class="callout-icon">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
-                        </svg>
-                    </div>
-                    <div class="callout-content">
-                        <strong>TIP:</strong> Both servers are required for complete functionality. The sobject-all server lets Vibes understand your Salesforce objects, while salesforce-api-context provides general Salesforce metadata access.
                     </div>
                 </div>
 
