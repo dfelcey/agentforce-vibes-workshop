@@ -56,18 +56,12 @@
                     </ul>
                 </div>
                 <div class="nav-group">
-                    <div class="nav-group-title">Build the Action</div>
+                    <div class="nav-group-title">Configure Agent Actions</div>
                     <ul class="nav-list">
-                        <li><a href="#step3" class="nav-item">3. Generate Apex Action</a></li>
-                        <li><a href="#step4" class="nav-item">4. Deploy to Your Org</a></li>
-                    </ul>
-                </div>
-                <div class="nav-group">
-                    <div class="nav-group-title">Build Loyalty Subagent</div>
-                    <ul class="nav-list">
-                        <li><a href="#step5" class="nav-item">5. Create Loyalty Subagent</a></li>
-                        <li><a href="#step6" class="nav-item">6. Add Loyalty Points Action</a></li>
-                        <li><a href="#step7" class="nav-item">7. Test the Subagent</a></li>
+                        <li><a href="#step3" class="nav-item">3. Add Order Status Action</a></li>
+                        <li><a href="#step4" class="nav-item">4. Create Loyalty Subagent</a></li>
+                        <li><a href="#step5" class="nav-item">5. Add Loyalty Points Action</a></li>
+                        <li><a href="#step6" class="nav-item">6. Test the Subagent</a></li>
                     </ul>
                 </div>
                 <div class="nav-group">
@@ -361,7 +355,7 @@
    - Create test class with 100% coverage
    - Label the invocable method as "Get Order Status"
 
-3. Deploy OrderStatusAction to my org
+3. Deploy OrderStatusAction to my org with test execution
 
 4. Create LoyaltyPointsAction Apex class:
    - Invocable from Agentforce (@InvocableMethod)
@@ -370,12 +364,14 @@
    - Label the invocable method as "Get Loyalty Points"
    - Create test class with 100% coverage
 
-5. Deploy LoyaltyPointsAction to my org
+5. Deploy LoyaltyPointsAction to my org with test execution
 
-After deployment, I'll manually:
-- Create a Loyalty subagent in Agent Builder
-- Add the Get Loyalty Points action to the Loyalty subagent
-- Test both actions
+After successful deployment, I'll manually:
+- Add "Get Order Status" action to the main Pronto agent
+- Create a Loyalty subagent in Agent Builder with these instructions:
+  "You help customers with loyalty program questions. When a customer asks about their points or rewards, use the Get Loyalty Points action with their email address. Our loyalty program: 1 point per dollar spent, 100 points = $1 off. Be friendly about rewards. For order status or delivery questions, refer them to our main support."
+- Add "Get Loyalty Points" action to the Loyalty subagent
+- Test routing between main agent and Loyalty subagent
 
 Please create a plan first, then I'll review it before you proceed.</code></pre>
                 </div>
@@ -442,10 +438,11 @@ Please create a plan first, then I'll review it before you proceed.</code></pre>
                         <strong>Plan Execution Complete!</strong> Vibes has now:
                         <ul style="margin-top: 0.5rem; margin-bottom: 0;">
                             <li>✓ Retrieved metadata from your org</li>
-                            <li>✓ Generated both Apex classes with test coverage</li>
-                            <li>✓ Deployed the code to your Salesforce org</li>
-                            <li>✓ Verified successful deployment</li>
+                            <li>✓ Generated OrderStatusAction and LoyaltyPointsAction with test coverage</li>
+                            <li>✓ Deployed both Apex classes to your Salesforce org</li>
+                            <li>✓ Verified successful deployment and test execution</li>
                         </ul>
+                        <p style="margin-top: 0.75rem; margin-bottom: 0;">You're now ready to configure the actions in Agent Builder!</p>
                     </div>
                 </div>
             </section>
@@ -453,80 +450,28 @@ Please create a plan first, then I'll review it before you proceed.</code></pre>
             <section id="step3" class="content-section">
                 <div class="step-header">
                     <span class="step-number">3</span>
-                    <h2>Generate the Apex Action</h2>
+                    <h2>Add Order Status Action to Pronto</h2>
                 </div>
 
-                <div class="callout callout-info">
-                    <div class="callout-icon">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
-                        </svg>
-                    </div>
-                    <div class="callout-content">
-                        <strong>💡 Quick Path:</strong> If you used the <strong>Complete Workshop Plan</strong> in Step 2, Vibes has already created a plan for both Apex classes. Skip to reviewing and approving the plan! The prompts below are for the step-by-step approach.
-                    </div>
-                </div>
-
-                <h3>Use Natural Language to Build</h3>
-                <p>Now comes the powerful part — you'll use natural language to generate a production-ready Apex action. Vibes will create a plan, let you review it, then build the complete, tested code.</p>
-
-                <p>In the Agentforce Vibes chat, enter this prompt:</p>
-
-                <div class="code-example">
-                    <div class="code-header">
-                        <span class="code-label">Prompt</span>
-                        <button class="copy-btn">Copy</button>
-                    </div>
-                    <pre><code>I need to create an Apex action for Agentforce. Please create a plan for:
-
-An Apex class called OrderStatusAction that is invocable from Agentforce. It should:
-- Accept an order number as a string input
-- Query the Order__c object for a matching record using the Order_Number__c field
-- Return the order status (Status__c) and estimated delivery date (Estimated_Delivery_Date__c) as output strings
-- Include proper error handling for when no order is found
-- Include a test class with 100% coverage
-
-Please create a plan first, then I'll review it before you build.</code></pre>
-                </div>
-
-                <div class="callout callout-info">
-                    <div class="callout-icon">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
-                        </svg>
-                    </div>
-                    <div class="callout-content">
-                        <strong>TIP:</strong> Vibes works best when you ask it to plan first. This lets you review the approach before code is generated, ensuring it matches your requirements and org's patterns.
-                    </div>
-                </div>
-
-                <h3>Review and Approve the Plan</h3>
-                <p>Vibes will present a plan showing:</p>
-                <ul class="step-list">
-                    <li>The Apex class structure with <code>@InvocableMethod</code> annotation</li>
-                    <li>Input and output wrapper classes</li>
-                    <li>SOQL query approach</li>
-                    <li>Error handling strategy</li>
-                    <li>Test class outline</li>
-                </ul>
-
-                <p>Review the plan and respond:</p>
-
-                <div class="code-example">
-                    <div class="code-header">
-                        <span class="code-label">Prompt</span>
-                        <button class="copy-btn">Copy</button>
-                    </div>
-                    <pre><code>Looks good, please proceed with building the code.</code></pre>
-                </div>
-
-                <h3>Review the Generated Code</h3>
-                <p>Vibes will generate several files. Review them to understand what was created:</p>
+                <h3>Configure the Action in Agent Builder</h3>
+                <p>Now that the OrderStatusAction Apex class is deployed, add it to your Pronto agent.</p>
 
                 <ol class="step-list">
-                    <li><strong>OrderStatusAction.cls</strong> — The main Apex class with <code>@InvocableMethod</code> annotation</li>
-                    <li><strong>OrderStatusActionTest.cls</strong> — Complete test class with assertions</li>
-                    <li>Vibes automatically follows Salesforce best practices and your org's coding patterns</li>
+                    <li>Navigate to <strong>Setup</strong> in your Salesforce org</li>
+                    <li>Search for <strong>Agentforce Agents</strong> in Quick Find</li>
+                    <li>Click on your <strong>Pronto Agent</strong> to open it</li>
+                    <li>Click the <strong>Actions</strong> tab</li>
+                    <li>Click <strong>New Action</strong></li>
+                    <li>Select <strong>Apex</strong> as the action type</li>
+                    <li>Search for and select <strong>OrderStatusAction</strong></li>
+                    <li>Verify the action configuration:
+                        <ul>
+                            <li><strong>Action Label:</strong> Get Order Status</li>
+                            <li><strong>Input:</strong> Order Number (String)</li>
+                            <li><strong>Outputs:</strong> Order Status (String), Estimated Delivery Date (String)</li>
+                        </ul>
+                    </li>
+                    <li>Click <strong>Finish</strong> or <strong>Save</strong></li>
                 </ol>
 
                 <div class="callout callout-info">
@@ -536,74 +481,14 @@ Please create a plan first, then I'll review it before you build.</code></pre>
                         </svg>
                     </div>
                     <div class="callout-content">
-                        <strong>TIP:</strong> Check that the SOQL query includes <code>Order_Number__c</code>, <code>Status__c</code>, and <code>Estimated_Delivery_Date__c</code> fields. The method should be properly annotated with a descriptive label for Agent Builder.
+                        <strong>TIP:</strong> The action label "Get Order Status" is what the agent will see when deciding which action to use. The <code>@InvocableMethod</code> label in your Apex class determines this display name.
                     </div>
-                </div>
-
-                <h3>Request Modifications (Optional)</h3>
-                <p>If you need changes, simply ask Vibes in natural language:</p>
-
-                <div class="code-example">
-                    <div class="code-header">
-                        <span class="code-label">Example refinement prompts</span>
-                        <button class="copy-btn">Copy</button>
-                    </div>
-                    <pre><code>Add a return value for customer email
-Handle the case when no order is found
-Update the method description to be more specific</code></pre>
                 </div>
             </section>
 
             <section id="step4" class="content-section">
                 <div class="step-header">
                     <span class="step-number">4</span>
-                    <h2>Deploy to Your Org</h2>
-                </div>
-
-                <h3>Deploy with Vibes</h3>
-                <p>Once you're satisfied with the generated code, deploy it directly from Vibes to your org.</p>
-
-                <p>In the Agentforce chat, tell Vibes to deploy:</p>
-
-                <div class="code-example">
-                    <div class="code-header">
-                        <span class="code-label">Prompt</span>
-                        <button class="copy-btn">Copy</button>
-                    </div>
-                    <pre><code>Deploy the OrderStatusAction class and test class to my org</code></pre>
-                </div>
-
-                <p>Vibes will:</p>
-                <ol class="step-list">
-                    <li>Run the Salesforce CLI command <code>sf project deploy start</code></li>
-                    <li>Execute the test class to verify coverage</li>
-                    <li>Report deployment status and any errors</li>
-                    <li>Show you the deployment results in the terminal</li>
-                </ol>
-
-                <h3>Verify Deployment</h3>
-                <p>Check that your deployment succeeded:</p>
-                <ul>
-                    <li>Look for "Deploy Succeeded" message in the terminal</li>
-                    <li>Verify test coverage is 100%</li>
-                    <li>Note the component IDs for the deployed classes</li>
-                </ul>
-
-                <div class="callout callout-warning">
-                    <div class="callout-icon">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
-                        </svg>
-                    </div>
-                    <div class="callout-content">
-                        <strong>Deployment Errors?</strong> If you encounter errors, paste them back into the Vibes chat. Vibes will analyze the error, explain what went wrong, and automatically fix the code before redeploying.
-                    </div>
-                </div>
-            </section>
-
-            <section id="step5" class="content-section">
-                <div class="step-header">
-                    <span class="step-number">5</span>
                     <h2>Create a Loyalty Subagent</h2>
                 </div>
 
@@ -687,66 +572,11 @@ Be friendly and enthusiastic about helping customers with their rewards. If they
                 </div>
             </section>
 
-            <section id="step6" class="content-section">
+            <section id="step5" class="content-section">
                 <div class="step-header">
-                    <span class="step-number">6</span>
+                    <span class="step-number">5</span>
                     <h2>Add Loyalty Points Action</h2>
                 </div>
-
-                <h3>Generate the Loyalty Points Action</h3>
-                <p>Now you'll use Vibes again to create a custom action for retrieving loyalty points. This demonstrates how quickly you can extend your agent with new capabilities using the same plan-first workflow.</p>
-
-                <p>Return to <strong>Agentforce Vibes</strong> and enter this prompt:</p>
-
-                <div class="code-example">
-                    <div class="code-header">
-                        <span class="code-label">Prompt</span>
-                        <button class="copy-btn">Copy</button>
-                    </div>
-                    <pre><code>I need another Apex action for the Loyalty subagent. Please create a plan for:
-
-An Apex class called LoyaltyPointsAction that is invocable from Agentforce. It should:
-- Accept a customer email as a string input
-- Return a random number of loyalty points between 100 and 10000 as an integer output
-- Label the invocable method as "Get Loyalty Points"
-- Include a test class with 100% coverage
-
-Please create a plan first, then I'll approve it.</code></pre>
-                </div>
-
-                <p>Once Vibes presents the plan, review it and respond:</p>
-
-                <div class="code-example">
-                    <div class="code-header">
-                        <span class="code-label">Prompt</span>
-                        <button class="copy-btn">Copy</button>
-                    </div>
-                    <pre><code>Looks good, build it.</code></pre>
-                </div>
-
-                <div class="callout callout-info">
-                    <div class="callout-icon">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
-                        </svg>
-                    </div>
-                    <div class="callout-content">
-                        <strong>TIP:</strong> In a real-world scenario, you'd query a Loyalty__c custom object or external system. For this workshop, a random number simulates the loyalty points lookup without requiring additional org setup.
-                    </div>
-                </div>
-
-                <h3>Deploy the Loyalty Action</h3>
-                <p>Once Vibes generates the code, deploy it:</p>
-
-                <div class="code-example">
-                    <div class="code-header">
-                        <span class="code-label">Prompt</span>
-                        <button class="copy-btn">Copy</button>
-                    </div>
-                    <pre><code>Deploy the LoyaltyPointsAction class and test class to my org</code></pre>
-                </div>
-
-                <p>Wait for Vibes to confirm successful deployment.</p>
 
                 <h3>Add Action to Loyalty Subagent</h3>
                 <p>Now wire the action into your Loyalty subagent:</p>
@@ -781,9 +611,9 @@ Please create a plan first, then I'll approve it.</code></pre>
                 </div>
             </section>
 
-            <section id="step7" class="content-section">
+            <section id="step6" class="content-section">
                 <div class="step-header">
-                    <span class="step-number">7</span>
+                    <span class="step-number">6</span>
                     <h2>Test the Loyalty Subagent</h2>
                 </div>
 
