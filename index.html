@@ -140,14 +140,18 @@
                 <ul>
                     <li><strong>Salesforce Org Access</strong> — A Salesforce org with Agentforce enabled</li>
                     <li><strong>Pronto Agent</strong> — A configured Pronto agent (complete the core Agentforce Builder Workshop first)</li>
-                    <li><strong>Order Object</strong> — The <code>Order__c</code> custom object with fields: <code>Order_Number__c</code>, <code>Status__c</code>, and <code>Estimated_Delivery_Date__c</code></li>
-                    <li><strong>System Permissions</strong> — Ability to create and deploy Apex classes and modify Agentforce agents</li>
+                    <li><strong>Order Object</strong> — The <code>Order__c</code> custom object with fields: <code>Order_Number__c</code>, <code>Status__c</code>, and <code>Estimated_Delivery_Date__c</code> (used in Steps 3-4)</li>
+                    <li><strong>System Permissions</strong> — Ability to create and deploy Apex classes, create subagents, and modify Agentforce agents</li>
                 </ul>
 
                 <div class="callout callout-info">
-                    <div class="callout-icon">ℹ️</div>
+                    <div class="callout-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
                     <div class="callout-content">
-                        <strong>New to Agentforce Vibes?</strong> This workshop introduces you to Vibes as you build. No prior experience with Vibes is required, but familiarity with Salesforce DX and Apex development concepts is helpful.
+                        <strong>Note:</strong> The Order__c object is only needed for the Order Status action (Steps 3-4). The Loyalty subagent (Steps 5-7) doesn't require any custom objects — it uses a simulated points lookup for workshop simplicity.
                     </div>
                 </div>
             </section>
