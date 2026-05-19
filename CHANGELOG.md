@@ -1,9 +1,9 @@
 # Workshop Site Updates
 
-## Expanded Step 2 with Official Workshop Content (2026-05-19)
+## Completed Step 2 with All Official Workshop Steps (2026-05-19)
 
-### Added Complete MCP Configuration Steps
-Based on official Agentforce Vibes Workshop content:
+### Added ALL Configuration Steps from Official Workshop
+Based on official Agentforce Vibes Workshop content - now includes ALL 6 steps:
 
 **1. Enable MCP Service (Beta)**
 - ✅ Navigate to Setup → User Interface
@@ -21,6 +21,38 @@ Based on official Agentforce Vibes Workshop content:
 - ✅ Toggle on all three available servers
 - ✅ View configuration/tools for each server
 - ✅ Explained what tools each server provides
+
+**4. Explore the Agentforce Vibes Sidebar (NEW)**
+- ✅ MCP Servers section overview
+- ✅ Auto-approve settings explanation
+- ✅ Context settings and mode adjustments
+- ✅ Skills Tab (modular instruction sets)
+- ✅ Rules Tab (persistent guidance like a4v-expert-global-rule.md)
+
+**5. Review Auto-Approve Settings (NEW)**
+- ✅ Explained auto-approve enabled vs disabled
+- ✅ Recommended disabled for workshop safety
+- ✅ WARNING callout about deployment risks
+- ✅ User control over command execution
+
+**6. Verify MCP Server Activation (NEW)**
+- ✅ Check servers show as Active in Vibes
+- ✅ View configuration icon for each server
+- ✅ See available Salesforce DX tools (sf project deploy, retrieve, etc)
+- ✅ TIP about tool visibility
+
+**7. Enable Local Development (NEW - Optional)**
+- ✅ Open org from Vibes status bar
+- ✅ Setup → Local Development Setup → Enable
+- ✅ NOTE: Optional, only needed for LWC preview
+- ✅ Not required for Apex workshop
+
+**8. Verify Metadata Retrieval (ENHANCED)**
+- ✅ Check Explorer sidebar for Order__c files
+- ✅ Verify object definition and field files
+- ✅ Check for aiApplicationConfigs
+- ✅ Verify SFDX project structure
+- ✅ SUCCESS callout with completion checklist
 
 ### Why This Matters
 - Follows official Salesforce workshop structure
